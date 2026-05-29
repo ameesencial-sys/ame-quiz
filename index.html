@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>AME Esencial — Conoce tu piel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #000000;
+      --charcoal:   #111111;
+      --mid:        #444444;
+      --light:      #888888;
+      --border:     rgba(0,0,0,0.11);
+      --bg:         #ffffff;
+      --bg-alt:     #f5f5f5;
+      --bg-dark:    #f0f0f0;
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Marcellus', Georgia, serif;
+      --font-ui:      'Jost', system-ui, sans-serif;
+
+      --radius: 2px;
+      --ease:   0.22s ease;
+    }
+
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+    body {
+      background: var(--bg);
+      color: var(--charcoal);
+      font-family: var(--font-ui);
+      font-weight: 300;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── WRAPPER ── */
+    .quiz-wrapper {
+      width: 100%;
+      max-width: 480px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      background: var(--bg);
+    }
+
+    /* ── BACK LINK ── */
+    .back-bar {
+      padding: 10px 20px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-alt);
+    }
+    .back-link {
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .back-link:hover { color: var(--black); }
+    .back-link::before { content: '←'; font-size: 0.9rem; }
+
+    /* ── HEADER ── */
+    .site-header {
+      padding: 18px 24px 14px;
+      display: flex;
+      justify-content: center;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 10;
+    }
+    .logo-text {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: 1rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+
+    /* ── PROGRESS ── */
+    .progress-bar-wrap { height: 2px; background: var(--bg-dark); }
+    .progress-bar-fill { height: 100%; background: var(--black); transition: width 0.4s ease; width: 0%; }
+
+    /* ── SCREENS ── */
+    .screen { display: none; flex-direction: column; flex: 1; padding: 28px 22px 40px; animation: fadeIn 0.3s ease; }
+    .screen.active { display: flex; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ── TYPOGRAPHY ── */
+    .eyebrow {
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--light); margin-bottom: 10px;
+    }
+    .screen-title {
+      font-family: var(--font-display); font-size: 1.9rem; font-weight: 300;
+      line-height: 1.15; color: var(--black); margin-bottom: 12px;
+    }
+    .screen-title em { font-style: italic; }
+    .screen-subtitle {
+      font-size: 0.86rem; font-weight: 300; color: var(--mid);
+      line-height: 1.7; margin-bottom: 28px;
+    }
+    .question-label {
+      font-family: var(--font-body); font-size: 0.95rem; color: var(--black);
+      margin-bottom: 12px; margin-top: 24px; line-height: 1.4;
+    }
+    .question-label:first-of-type { margin-top: 0; }
+
+    /* ── OPTIONS ── */
+    .options-grid { display: flex; flex-direction: column; gap: 9px; }
+
+    .option-btn {
+      display: flex; align-items: flex-start; gap: 13px;
+      background: white; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 14px 16px; text-align: left; cursor: pointer; width: 100%;
+      transition: border-color var(--ease), background var(--ease);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .option-btn.selected { border-color: var(--black); background: var(--bg-alt); }
+    .option-btn:active { transform: scale(0.99); }
+
+    .option-marker {
+      width: 17px; height: 17px; border: 1.5px solid #ccc; border-radius: 50%;
+      flex-shrink: 0; margin-top: 1px; display: flex; align-items: center;
+      justify-content: center; transition: all var(--ease);
+    }
+    .option-btn.selected .option-marker { border-color: var(--black); background: var(--black); }
+    .option-marker::after {
+      content: ''; width: 5px; height: 5px; background: white;
+      border-radius: 50%; opacity: 0; transition: opacity var(--ease);
+    }
+    .option-btn.selected .option-marker::after { opacity: 1; }
+
+    .option-name { font-size: 0.85rem; font-weight: 400; color: var(--black); display: block; margin-bottom: 2px; }
+    .option-detail { font-size: 0.75rem; font-weight: 300; color: var(--light); display: block; line-height: 1.5; }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: block; width: 100%; padding: 16px 24px; background: var(--black); color: white;
+      font-family: var(--font-ui); font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase; border: none; border-radius: var(--radius);
+      cursor: pointer; text-align: center; text-decoration: none;
+      -webkit-tap-highlight-color: transparent; transition: opacity var(--ease);
+    }
+    .btn-primary:disabled { opacity: 0.3; cursor: not-allowed; }
+    .btn-primary:not(:disabled):active { opacity: 0.8; transform: scale(0.98); }
+
+    .restart-btn {
+      display: block; width: 100%; padding: 13px; background: transparent; color: var(--light);
+      font-family: var(--font-ui); font-size: 0.72rem; letter-spacing: 0.1em;
+      text-transform: uppercase; border: none; cursor: pointer; text-align: center; margin-top: 6px;
+    }
+
+    /* ── WELCOME ── */
+    #screen-1 { justify-content: space-between; }
+    .welcome-top { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+
+    .welcome-badge {
+      display: inline-block; padding: 5px 12px; border: 1px solid var(--border);
+      border-radius: 100px; font-size: 0.68rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--mid); margin-bottom: 20px; width: fit-content;
+    }
+    .welcome-title {
+      font-family: var(--font-display); font-size: 2.3rem; font-weight: 300;
+      line-height: 1.1; color: var(--black); margin-bottom: 16px;
+    }
+    .welcome-title em { font-style: italic; }
+    .welcome-body {
+      font-size: 0.88rem; font-weight: 300; color: var(--mid);
+      line-height: 1.75; margin-bottom: 28px;
+    }
+    .welcome-stats {
+      display: flex; border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; margin-bottom: 28px;
+    }
+    .stat-item { flex: 1; padding: 13px 10px; text-align: center; background: white; }
+    .stat-item + .stat-item { border-left: 1px solid var(--border); }
+    .stat-num { display: block; font-family: var(--font-display); font-size: 1.4rem; font-weight: 400; color: var(--black); line-height: 1; margin-bottom: 3px; }
+    .stat-label { display: block; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light); }
+
+    /* ── RESULTS ── */
+    .result-badge {
+      display: inline-block; padding: 4px 11px; background: var(--bg-alt); border: 1px solid var(--border);
+      border-radius: 100px; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--mid); margin-bottom: 14px; width: fit-content;
+    }
+
+    .kit-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 8px; }
+    .kit-card-header { background: var(--black); color: white; padding: 16px 18px 13px; }
+    .kit-label { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.55; display: block; margin-bottom: 5px; font-family: var(--font-ui); }
+    .kit-name { font-family: var(--font-display); font-size: 1.55rem; font-weight: 300; line-height: 1.1; display: block; margin-bottom: 4px; }
+    .kit-tagline { font-size: 0.73rem; opacity: 0.65; font-family: var(--font-ui); font-weight: 300; }
+    .kit-card-body { padding: 16px 18px; }
+    .kit-why-title { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light); margin-bottom: 7px; font-family: var(--font-ui); }
+    .kit-why-text { font-size: 0.83rem; font-weight: 300; color: var(--mid); line-height: 1.65; margin-bottom: 16px; }
+
+    .kit-includes { display: flex; flex-direction: column; gap: 5px; margin-bottom: 16px; padding: 13px; background: var(--bg-alt); border-radius: var(--radius); }
+    .kit-includes-title { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light); margin-bottom: 5px; font-family: var(--font-ui); }
+    .kit-product-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--charcoal); font-weight: 300; }
+    .kit-product-item::before { content: ''; width: 3px; height: 3px; background: #bbb; border-radius: 50%; flex-shrink: 0; }
+
+    .btn-kit {
+      display: block; width: 100%; padding: 14px 24px; background: var(--black); color: white;
+      font-family: var(--font-ui); font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase; border: none; border-radius: var(--radius);
+      cursor: pointer; text-align: center; text-decoration: none; transition: opacity 0.2s;
+    }
+    .btn-kit:active { opacity: 0.8; }
+
+    .individuals-section { margin-top: 24px; }
+    .individuals-title {
+      font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light);
+      margin-bottom: 12px; display: flex; align-items: center; gap: 10px; font-family: var(--font-ui);
+    }
+    .individuals-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    .product-mini-card {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 13px 15px; background: white; border: 1px solid var(--border);
+      border-radius: var(--radius); margin-bottom: 7px;
+    }
+    .product-mini-name { display: block; font-size: 0.82rem; font-weight: 400; color: var(--black); margin-bottom: 2px; font-family: var(--font-body); }
+    .product-mini-sub { display: block; font-size: 0.71rem; font-weight: 300; color: var(--light); }
+    .product-mini-btn {
+      flex-shrink: 0; padding: 7px 13px; background: transparent; border: 1px solid var(--black);
+      border-radius: var(--radius); font-family: var(--font-ui); font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); text-decoration: none;
+      transition: background 0.2s, color 0.2s; white-space: nowrap;
+    }
+    .product-mini-btn:active { background: var(--black); color: white; }
+
+    /* ── STEP 4 (local only) ── */
+    .instruction-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; margin-bottom: 10px; }
+    .instruction-step { display: flex; gap: 15px; align-items: flex-start; margin-bottom: 16px; }
+    .instruction-step:last-child { margin-bottom: 0; }
+    .step-num {
+      width: 26px; height: 26px; border: 1.5px solid var(--black); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; font-weight: 500; color: var(--black); flex-shrink: 0; font-family: var(--font-ui);
+    }
+    .step-title { font-size: 0.83rem; font-weight: 500; color: var(--black); margin-bottom: 4px; }
+    .step-desc { font-size: 0.78rem; font-weight: 300; color: var(--mid); line-height: 1.6; }
+    .coupon-highlight {
+      display: inline-block; padding: 2px 9px; background: var(--bg-alt); border: 1px solid var(--border);
+      border-radius: 2px; font-family: monospace; font-size: 0.88rem; font-weight: bold; color: var(--black); letter-spacing: 0.06em;
+    }
+    .info-note {
+      display: flex; gap: 10px; padding: 13px 15px; background: var(--bg-alt);
+      border: 1px solid var(--border); border-radius: var(--radius); margin: 14px 0 18px;
+    }
+    .info-note-text { font-size: 0.78rem; font-weight: 300; color: var(--charcoal); line-height: 1.55; }
+
+    /* ── FOOTER ── */
+    .site-footer { padding: 18px 22px; text-align: center; border-top: 1px solid var(--border); margin-top: auto; }
+    .site-footer p { font-size: 0.67rem; letter-spacing: 0.08em; color: var(--light); text-transform: uppercase; }
+
+    .mt-28 { margin-top: 28px; }
+
+    @media (min-width: 520px) {
+      body { background: #e5e5e5; padding: 20px 0; }
+      .quiz-wrapper { box-shadow: 0 6px 32px rgba(0,0,0,0.12); min-height: auto; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="quiz-wrapper">
+
+  <!-- BACK -->
+  <div class="back-bar">
+    <a href="https://www.ameesencial.com.ar" class="back-link">Volver a AME Esencial</a>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <span class="logo-text">AME Esencial</span>
+  </header>
+
+  <!-- PROGRESS -->
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progress-bar"></div>
+  </div>
+
+  <!-- ── SCREEN 1: BIENVENIDA ── -->
+  <section class="screen active" id="screen-1">
+    <div class="welcome-top">
+      <div>
+        <span class="welcome-badge">Diagnostico rapido</span>
+        <h1 class="welcome-title">Este momento<br />es <em>tuyo.</em></h1>
+        <p class="welcome-body">
+          En tres preguntas te decimos exactamente que necesita tu barrera cutanea y que productos de AME Esencial son los correctos para vos.
+        </p>
+        <div class="welcome-stats">
+          <div class="stat-item">
+            <span class="stat-num">3</span>
+            <span class="stat-label">Preguntas</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">2'</span>
+            <span class="stat-label">Duracion</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">1</span>
+            <span class="stat-label">Kit ideal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button class="btn-primary" onclick="goToScreen(2)">Comenzar diagnostico</button>
+      <p style="font-size:0.7rem; color:var(--light); text-align:center; margin-top:10px; letter-spacing:0.04em;">
+        Aprobado ANMAT · Sin datos personales requeridos
+      </p>
+    </div>
+  </section>
+
+  <!-- ── SCREEN 2: DIAGNOSTICO ── -->
+  <section class="screen" id="screen-2">
+    <p class="eyebrow">Paso 1 de 2 — Diagnostico</p>
+    <h2 class="screen-title">Conoce <em>tu piel</em></h2>
+    <p class="screen-subtitle">Selecciona la opcion que mejor describe tu piel ahora mismo. No existe respuesta incorrecta.</p>
+
+    <p class="question-label">Como sentes tu piel?</p>
+    <div class="options-grid" id="options-a">
+      <button class="option-btn" data-group="a" data-value="seca" onclick="selectOption(this)">
+        <span class="option-marker"></span>
+        <span class="option-content">
+          <span class="option-name">Tirante o seca</span>
+          <span class="option-detail">Se tensa despues de lavar, se pela, pide humedad constante</span>
+        </span>
+      </button>
+      <button class="option-btn" data-group="a" data-value="grasa" onclick="selectOption(this)">
+        <span class="option-marker"></span>
+        <span class="option-content">
+          <span class="option-name">Con brillo general</span>
+          <span class="option-detail">Sebo uniforme, poros visibles, sensacion de exceso de grasa en todo el rostro</span>
+        </span>
+      </button>
+      <button class="option-btn" data-group="a" data-value="mixta" onclick="selectOption(this)">
+        <span class="option-marker"></span>
+        <span class="option-content">
+          <span class="option-name">Brillo en zona T</span>
+          <span class="option-detail">Frente, nariz y menton brillantes; mejillas normales o secas</span>
+        </span>
+      </button>
+      <button class="option-btn" data-group="a" data-value="sensible" onclick="selectOption(this)">
+        <span class="option-marker"></span>
+        <span class="option-content">
+          <span class="option-name">Reactiva o sensible</span>
+          <span class="option-detail">Se enrojece, pica o reacciona con facilidad ante productos o cambios de temperatura</span>
+        </span>
+      </button>
+    </div>
+
+    <p class="question-label">Cual es tu objetivo principal?</p>
+    <div class="options-grid" id="options-b">
+      <button class="option-btn" data-group="b" data-value="hidratar" onclick="selectOption(this)">
+        <span class="option-marker"></span>
+        <span class="option-content">
+          <span class="option-name">Hidratar sin pesadez</span>
+          <span class="option-detail">Quiero humedad real sin sensacion grasa ni brillo excesivo</span>
+        </span>
+      </button>
+      <button class="option-btn" data-group="b" data-value="reparar" onclick="selectOption(this)">
+        <span class="option-marker"></span>
+        <span class="option-content">
+          <span class="option-name">Reparar y dar luz</span>
+          <span class="option-detail">Mi piel perdio luminosidad o tiene marcas que quiero mejorar</span>
+        </span>
+      </button>
+      <button class="option-btn" data-group="b" data-value="simplificar" onclick="selectOption(this)">
+        <span class="option-marker"></span>
+        <span class="option-content">
+          <span class="option-name">Simplificar mi rutina</span>
+          <span class="option-detail">Necesito una rutina minima, efectiva y sin complicaciones</span>
+        </span>
+      </button>
+    </div>
+
+    <div class="mt-28">
+      <button class="btn-primary" id="btn-diagnose" disabled onclick="showResults()">
+        Ver mi recomendacion
+      </button>
+    </div>
+  </section>
+
+  <!-- ── SCREEN 3: RESULTADOS (generado por JS) ── -->
+  <section class="screen" id="screen-3"></section>
+
+  <!-- ── SCREEN 4: INSTRUCCIONES LOCAL (solo ?local=true) ── -->
+  <section class="screen" id="screen-4">
+    <p class="eyebrow">Paso final — Como llevar tu kit hoy</p>
+    <h2 class="screen-title">Tu descuento <em>esta listo.</em></h2>
+    <p class="screen-subtitle">Aplica el codigo de tu local y retira el pedido sin costo de envio. Son tres pasos simples.</p>
+
+    <div class="instruction-card">
+      <div class="instruction-step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <p class="step-title">Agrega tu kit al carrito</p>
+          <p class="step-desc">Usa el boton "Agregar kit al carrito" de la pantalla anterior, o busca el producto directamente en la tienda. Una vez que tengas todo, procede al checkout.</p>
+        </div>
+      </div>
+      <div class="instruction-step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <p class="step-title">Aplica tu cupon de descuento</p>
+          <p class="step-desc">
+            En el carrito, busca el campo "Tengo un codigo de descuento" e ingresa:<br /><br />
+            <span class="coupon-highlight">PELUQUERIA5</span><br /><br />
+            El descuento se aplica automaticamente sobre el total.
+          </p>
+        </div>
+      </div>
+      <div class="instruction-step">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <p class="step-title">Selecciona Retiro por local</p>
+          <p class="step-desc">En el paso de envio, elegi la opcion <strong>"Retiro en el local"</strong>. El costo de envio sera $0 y podras retirarlo hoy mismo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-note">
+      <span style="flex-shrink:0; margin-top:1px;">—</span>
+      <p class="info-note-text">El personal del local ya conoce el sistema. Podes mostrar la pantalla de confirmacion de tu pedido para retirar sin esperas.</p>
+    </div>
+
+    <a href="https://www.ameesencial.com.ar/productos/" class="btn-primary">Ir a la tienda AME Esencial</a>
+    <button class="restart-btn" onclick="restartQuiz()">Volver a hacer el diagnostico</button>
+  </section>
+
+  <footer class="site-footer">
+    <p>AME Esencial · Dermocosmetica · Aprobado ANMAT</p>
+  </footer>
+
+</div>
+
+<script>
+  // ── MODO LOCAL ──
+  const IS_LOCAL = new URLSearchParams(window.location.search).get('local') === 'true';
+  if (!IS_LOCAL) document.getElementById('screen-4').style.display = 'none';
+
+  // ── STATE ──
+  const state = { skinType: null, objetivo: null };
+
+  // ── BASE URL ──
+  const STORE = 'https://www.ameesencial.com.ar';
+
+  // ── KITS CON PRODUCTOS REALES ──
+  const KITS = {
+
+    'kit-xl-seca': {
+      name: 'Kit XL Piel Normal a Seca',
+      tagline: 'Limpieza, hidratacion en capas y soporte de barrera.',
+      why: 'Tu piel tiende a la tirantez porque pierde agua con mayor facilidad (TEWL elevada). Este kit de cuatro pasos actua en cada nivel: limpia sin alterar el pH, tonifica con bruma de agua de rosas, hidrata con acido hialuronico de doble peso molecular y cierra con ceramidas que refuerzan la funcion barrera. El ciclo de renovacion celular de 28 dias empieza con el primer uso consistente.',
+      products: ['Gel de Limpieza Facial 150ml', 'Bruma Facial Hidratante 150ml', 'Serum Acido Hialuronico 30ml', 'Crema Facial Multivitaminica 50g'],
+      kitUrl: STORE + '/productos/kit-basico-xl-normal-seca/',
+      individuals: [
+        { name: 'Serum Acido Hialuronico', sub: '30ml · Hidratacion multicapa', url: STORE + '/productos/serum-acido-hialuronico-doble-peso-molecular-hidratacion-multicapa-vptpw/' },
+        { name: 'Crema Facial Hidratante Multivitaminica', sub: '50g · Ceramidas + vitaminas', url: STORE + '/productos/crema-facial-hidratante-multivitaminica/' },
+        { name: 'Bruma Hidratante y Calmante', sub: '150ml · AM y PM', url: STORE + '/productos/bruma-hidratante-y-calmante-150-ml/' },
+      ]
+    },
+
+    'kit-rutina-24hs': {
+      name: 'Kit Rutina 24hs: Hidratacion y Renovacion',
+      tagline: 'Reparacion activa en el ciclo celular completo.',
+      why: 'La perdida de luminosidad tiene origen quimico: acumulacion de celulas muertas, oxidacion y barrera debilitada. Este kit actua las 24 horas: de dia hidrata y protege con activos vitamínicos; de noche activa la renovacion celular con retinol. Sin agresion. Sin promesas vacias. Solo bioquimica aplicada con constancia.',
+      products: ['Gel de Limpieza Facial 150ml', 'Serum Acido Hialuronico 30ml', 'Crema Facial Multivitaminica 50g', 'Serum Retinol (uso nocturno)'],
+      kitUrl: STORE + '/productos/rutina-dia-y-noche/',
+      individuals: [
+        { name: 'Serum Retinol', sub: '30ml · Renovacion celular nocturna', url: STORE + '/productos/serum-retinol/' },
+        { name: 'Crema Facial Hidratante Multivitaminica', sub: '50g · Ceramidas + vitaminas', url: STORE + '/productos/crema-facial-hidratante-multivitaminica/' },
+        { name: 'Contorno de Ojos con Eyeseryl', sub: 'Activo antifatiga clinico', url: STORE + '/productos/contorno-de-ojos-con-eyeseryl/' },
+      ]
+    },
+
+    'kit-mixta-grasa': {
+      name: 'Kit Piel Mixta / Grasa',
+      tagline: 'Equilibrio sebaceo sin resecar ni brillar.',
+      why: 'El exceso de sebo no se combate eliminando la hidratacion: se equilibra entregando la humedad correcta para que la piel no compense produciendo mas grasa. Este kit usa texturas de absorcion inmediata, niacinamida reguladora y hamamelis tonificante. Resultado: menos brillo, poros menos visibles, piel mas uniforme.',
+      products: ['Gel de Limpieza Facial 150ml', 'Bruma Facial Hidratante 60ml', 'Serum Acido Hialuronico 30ml', 'Crema Gel Hidratante 50g'],
+      kitUrl: STORE + '/productos/kit-piel-mixta-grasa/',
+      individuals: [
+        { name: 'Crema Gel Hidratante', sub: '50g · Textura ultraligera', url: STORE + '/productos/crema-gel-hidratante/' },
+        { name: 'Serum Acido Hialuronico', sub: '30ml · Sin residuo graso', url: STORE + '/productos/serum-acido-hialuronico-doble-peso-molecular-hidratacion-multicapa-vptpw/' },
+        { name: 'Gel de Limpieza Facial', sub: '150ml · pH balanceado', url: STORE + '/productos/gel-calmante-de-limpieza-facial-150-ml/' },
+      ]
+    },
+
+    'kit-normal-mixta': {
+      name: 'Kit Piel Normal / Mixta',
+      tagline: 'Rutina completa para piel que necesita equilibrio.',
+      why: 'La piel mixta con zona T brillante necesita activos que regulen sin resecar las mejillas. Este kit equilibra las dos necesidades en una sola rutina: limpieza suave, hidratacion con acido hialuronico y una crema de textura intermedia que no satura el poro ni deja la piel tensa.',
+      products: ['Gel de Limpieza Facial', 'Serum Acido Hialuronico', 'Crema Facial Hidratante', 'Bruma Hidratante'],
+      kitUrl: STORE + '/productos/kit-piel-normal-mixta/',
+      individuals: [
+        { name: 'Crema Gel Hidratante', sub: '50g · Textura ultraligera', url: STORE + '/productos/crema-gel-hidratante/' },
+        { name: 'Serum Acido Hialuronico', sub: '30ml · Sin residuo graso', url: STORE + '/productos/serum-acido-hialuronico-doble-peso-molecular-hidratacion-multicapa-vptpw/' },
+        { name: 'Bruma Hidratante y Calmante', sub: '60ml · Formato cartera', url: STORE + '/productos/bruma-hidratante-y-calmante-60-ml/' },
+      ]
+    },
+
+    'kit-luminosa': {
+      name: 'Kit Piel Luminosa Real',
+      tagline: 'Luminosidad desde la quimica, no desde el maquillaje.',
+      why: 'La piel sensible reacciona a la sobrecarga de ingredientes. El principio de este kit es la sustraccion: formulaciones minimas, sin fragancia, con activos calmantes documentados. Aporta luminosidad de forma gradual mientras reconstruye la barrera. Sin estresar los receptores de irritacion. INCI limpio.',
+      products: ['Gel de Limpieza Facial', 'Bruma Hidratante y Calmante', 'Serum Acido Hialuronico', 'Crema Facial Hidratante'],
+      kitUrl: STORE + '/productos/kit-piel-luminosa-gq77r/',
+      individuals: [
+        { name: 'Bruma Hidratante y Calmante', sub: '150ml · Centella asiatica', url: STORE + '/productos/bruma-hidratante-y-calmante-150-ml/' },
+        { name: 'Serum Acido Hialuronico', sub: '30ml · Sin fragancia', url: STORE + '/productos/serum-acido-hialuronico-doble-peso-molecular-hidratacion-multicapa-vptpw/' },
+        { name: 'Crema Facial Hidratante Multivitaminica', sub: '50g · Calmante y reparadora', url: STORE + '/productos/crema-facial-hidratante-multivitaminica/' },
+      ]
+    },
+
+    'kit-dinamico': {
+      name: 'Kit Rutina Dinamica',
+      tagline: 'Lo esencial. Lo que realmente necesitas.',
+      why: 'Una rutina eficaz no necesita diez productos: necesita los correctos. Este kit fue disenado para quienes buscan simplicidad sin resignar resultados. Limpieza suave, hidratacion funcional con acido hialuronico y soporte de barrera. La base de cualquier protocolo dermatologico, aplicada con constancia durante 28 dias.',
+      products: ['Gel de Limpieza Facial', 'Serum Acido Hialuronico', 'Crema Facial Hidratante'],
+      kitUrl: STORE + '/productos/kit-rutina-dinamica-1mfdo/',
+      individuals: [
+        { name: 'Gel de Limpieza Facial', sub: '150ml · pH balanceado', url: STORE + '/productos/gel-calmante-de-limpieza-facial-150-ml/' },
+        { name: 'Serum Acido Hialuronico', sub: '30ml · Hidratacion multicapa', url: STORE + '/productos/serum-acido-hialuronico-doble-peso-molecular-hidratacion-multicapa-vptpw/' },
+        { name: 'Crema Facial Hidratante Multivitaminica', sub: '50g · Ceramidas + vitaminas', url: STORE + '/productos/crema-facial-hidratante-multivitaminica/' },
+      ]
+    },
+
+  };
+
+  // ── LOGICA DE RECOMENDACION ──
+  function getKitKey(skin, objetivo) {
+    if (skin === 'seca'     && objetivo === 'reparar')    return 'kit-rutina-24hs';
+    if (skin === 'seca'     && objetivo === 'simplificar') return 'kit-dinamico';
+    if (skin === 'seca')                                   return 'kit-xl-seca';
+    if (skin === 'grasa')                                  return 'kit-mixta-grasa';
+    if (skin === 'mixta'    && objetivo === 'reparar')    return 'kit-rutina-24hs';
+    if (skin === 'mixta')                                  return 'kit-normal-mixta';
+    if (skin === 'sensible' && objetivo === 'reparar')    return 'kit-luminosa';
+    if (skin === 'sensible')                               return 'kit-luminosa';
+    return 'kit-dinamico';
+  }
+
+  // ── NAVEGACION ──
+  const PROGRESS = { 1: 0, 2: 33, 3: 70, 4: 100 };
+  function goToScreen(n) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen-' + n).classList.add('active');
+    document.getElementById('progress-bar').style.width = PROGRESS[n] + '%';
+    window.scrollTo(0, 0);
+  }
+
+  // ── SELECCION DE OPCION ──
+  function selectOption(btn) {
+    const group = btn.dataset.group;
+    document.querySelectorAll('.option-btn[data-group="' + group + '"]').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    state[group === 'a' ? 'skinType' : 'objetivo'] = btn.dataset.value;
+    document.getElementById('btn-diagnose').disabled = !(state.skinType && state.objetivo);
+  }
+
+  // ── MOSTRAR RESULTADOS ──
+  function showResults() {
+    const kit = KITS[getKitKey(state.skinType, state.objetivo)];
+    const ctaBtn = IS_LOCAL
+      ? `<button class="btn-primary" onclick="goToScreen(4)">Como usar mi descuento</button>`
+      : `<a href="${STORE}/productos/" class="btn-primary">Ir a la tienda AME Esencial</a>`;
+
+    document.getElementById('screen-3').innerHTML = `
+      <p class="eyebrow">Tu resultado</p>
+      <span class="result-badge">Recomendacion personalizada</span>
+
+      <div class="kit-card">
+        <div class="kit-card-header">
+          <span class="kit-label">Recomendacion AME Esencial</span>
+          <span class="kit-name">${kit.name}</span>
+          <span class="kit-tagline">${kit.tagline}</span>
+        </div>
+        <div class="kit-card-body">
+          <p class="kit-why-title">Por que este kit</p>
+          <p class="kit-why-text">${kit.why}</p>
+          <div class="kit-includes">
+            <p class="kit-includes-title">El kit incluye</p>
+            ${kit.products.map(p => `<span class="kit-product-item">${p}</span>`).join('')}
+          </div>
+          <a href="${kit.kitUrl}" class="btn-kit">Agregar kit al carrito</a>
+        </div>
+      </div>
+
+      <div class="individuals-section">
+        <p class="individuals-title">Tambien podés elegir por producto</p>
+        ${kit.individuals.map(p => `
+          <div class="product-mini-card">
+            <div>
+              <span class="product-mini-name">${p.name}</span>
+              <span class="product-mini-sub">${p.sub}</span>
+            </div>
+            <a href="${p.url}" class="product-mini-btn">Ver</a>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="mt-28">
+        ${ctaBtn}
+        <button class="restart-btn" onclick="restartQuiz()">Volver a hacer el diagnostico</button>
+      </div>
+    `;
+    goToScreen(3);
+  }
+
+  // ── REINICIAR ──
+  function restartQuiz() {
+    state.skinType = null; state.objetivo = null;
+    document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+    document.getElementById('btn-diagnose').disabled = true;
+    goToScreen(1);
+  }
+</script>
+</body>
+</html>
