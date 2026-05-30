@@ -299,10 +299,10 @@
   <section class="screen active" id="screen-1">
     <div class="welcome-top">
       <div>
-        <span class="welcome-badge">Diagnostico rapido</span>
+        <span class="welcome-badge">Diagnóstico rápido</span>
         <h1 class="welcome-title">Este momento<br />es <em>tuyo.</em></h1>
         <p class="welcome-body">
-          En tres preguntas te decimos exactamente que necesita tu barrera cutanea y que productos de AME Esencial son los correctos para vos.
+          En tres preguntas te decimos exactamente qué necesita tu barrera cutánea y qué productos de AME Esencial son los correctos para vos.
         </p>
         <div class="welcome-stats">
           <div class="stat-item">
@@ -311,7 +311,7 @@
           </div>
           <div class="stat-item">
             <span class="stat-num">2'</span>
-            <span class="stat-label">Duracion</span>
+            <span class="stat-label">Duración</span>
           </div>
           <div class="stat-item">
             <span class="stat-num">1</span>
@@ -321,7 +321,7 @@
       </div>
     </div>
     <div>
-      <button class="btn-primary" onclick="goToScreen(2)">Comenzar diagnostico</button>
+      <button class="btn-primary" onclick="goToScreen(2)">Comenzar diagnóstico</button>
       <p style="font-size:0.7rem; color:var(--light); text-align:center; margin-top:10px; letter-spacing:0.04em;">
         Aprobado ANMAT · Sin datos personales requeridos
       </p>
@@ -330,70 +330,70 @@
 
   <!-- ── SCREEN 2: DIAGNOSTICO ── -->
   <section class="screen" id="screen-2">
-    <p class="eyebrow">Paso 1 de 2 — Diagnostico</p>
-    <h2 class="screen-title">Conoce <em>tu piel</em></h2>
-    <p class="screen-subtitle">Selecciona la opcion que mejor describe tu piel ahora mismo. No existe respuesta incorrecta.</p>
+    <p class="eyebrow">Paso 1 de 2 — Diagnóstico</p>
+    <h2 class="screen-title">Conocé <em>tu piel</em></h2>
+    <p class="screen-subtitle">Seleccioná la opción que mejor describe tu piel ahora mismo. No existe respuesta incorrecta.</p>
 
-    <p class="question-label">Como sentes tu piel?</p>
+    <p class="question-label">¿Cómo sentís tu piel?</p>
     <div class="options-grid" id="options-a">
       <button class="option-btn" data-group="a" data-value="seca" onclick="selectOption(this)">
         <span class="option-marker"></span>
         <span class="option-content">
           <span class="option-name">Tirante o seca</span>
-          <span class="option-detail">Se tensa despues de lavar, se pela, pide humedad constante</span>
+          <span class="option-detail">Se tensa después de lavar, se pela, pide humedad constante</span>
         </span>
       </button>
       <button class="option-btn" data-group="a" data-value="grasa" onclick="selectOption(this)">
         <span class="option-marker"></span>
         <span class="option-content">
           <span class="option-name">Con brillo general</span>
-          <span class="option-detail">Sebo uniforme, poros visibles, sensacion de exceso de grasa en todo el rostro</span>
+          <span class="option-detail">Sebo uniforme, poros visibles, sensación de exceso de grasa en todo el rostro</span>
         </span>
       </button>
       <button class="option-btn" data-group="a" data-value="mixta" onclick="selectOption(this)">
         <span class="option-marker"></span>
         <span class="option-content">
           <span class="option-name">Brillo en zona T</span>
-          <span class="option-detail">Frente, nariz y menton brillantes; mejillas normales o secas</span>
+          <span class="option-detail">Frente, nariz y mentón brillantes; mejillas normales o secas</span>
         </span>
       </button>
       <button class="option-btn" data-group="a" data-value="sensible" onclick="selectOption(this)">
         <span class="option-marker"></span>
         <span class="option-content">
           <span class="option-name">Reactiva o sensible</span>
-          <span class="option-detail">Se enrojece, pica o reacciona con facilidad ante productos o cambios de temperatura</span>
+          <span class="option-detail">Se enrojece, pica o reacciona fácilmente ante productos o cambios de temperatura</span>
         </span>
       </button>
     </div>
 
-    <p class="question-label">Cual es tu objetivo principal?</p>
+    <p class="question-label">¿Cuál es tu objetivo principal?</p>
     <div class="options-grid" id="options-b">
       <button class="option-btn" data-group="b" data-value="hidratar" onclick="selectOption(this)">
         <span class="option-marker"></span>
         <span class="option-content">
           <span class="option-name">Hidratar sin pesadez</span>
-          <span class="option-detail">Quiero humedad real sin sensacion grasa ni brillo excesivo</span>
+          <span class="option-detail">Quiero humedad real sin sensación grasa ni brillo excesivo</span>
         </span>
       </button>
       <button class="option-btn" data-group="b" data-value="reparar" onclick="selectOption(this)">
         <span class="option-marker"></span>
         <span class="option-content">
           <span class="option-name">Reparar y dar luz</span>
-          <span class="option-detail">Mi piel perdio luminosidad o tiene marcas que quiero mejorar</span>
+          <span class="option-detail">Mi piel perdió luminosidad o tiene marcas que quiero mejorar</span>
         </span>
       </button>
       <button class="option-btn" data-group="b" data-value="simplificar" onclick="selectOption(this)">
         <span class="option-marker"></span>
         <span class="option-content">
           <span class="option-name">Simplificar mi rutina</span>
-          <span class="option-detail">Necesito una rutina minima, efectiva y sin complicaciones</span>
+          <span class="option-detail">Necesito una rutina mínima, efectiva y sin complicaciones</span>
         </span>
       </button>
     </div>
 
     <div class="mt-28">
       <button class="btn-primary" id="btn-diagnose" disabled onclick="showResults()">
-        Ver mi recomendacion
+        Ver mi recomendación
       </button>
     </div>
   </section>
@@ -403,49 +403,49 @@
 
   <!-- ── SCREEN 4: INSTRUCCIONES LOCAL (solo ?local=true) ── -->
   <section class="screen" id="screen-4">
-    <p class="eyebrow">Paso final — Como llevar tu kit hoy</p>
-    <h2 class="screen-title">Tu descuento <em>esta listo.</em></h2>
-    <p class="screen-subtitle">Aplica el codigo de tu local y retira el pedido sin costo de envio. Son tres pasos simples.</p>
+    <p class="eyebrow">Paso final — Cómo llevar tu kit hoy</p>
+    <h2 class="screen-title">Tu descuento <em>está listo.</em></h2>
+    <p class="screen-subtitle">Aplicá el código de tu local y retirá el pedido sin costo de envío. Son tres pasos simples.</p>
 
     <div class="instruction-card">
       <div class="instruction-step">
         <div class="step-num">1</div>
         <div class="step-text">
-          <p class="step-title">Agrega tu kit al carrito</p>
-          <p class="step-desc">Usa el boton "Agregar kit al carrito" de la pantalla anterior, o busca el producto directamente en la tienda. Una vez que tengas todo, procede al checkout.</p>
+          <p class="step-title">Agregá tu kit al carrito</p>
+          <p class="step-desc">Usá el botón "Agregar kit al carrito" de la pantalla anterior, o buscá el producto directamente en la tienda. Una vez que tengas todo, procedé al checkout.</p>
         </div>
       </div>
       <div class="instruction-step">
         <div class="step-num">2</div>
         <div class="step-text">
-          <p class="step-title">Aplica tu cupon de descuento</p>
+          <p class="step-title">Aplicá tu cupón de descuento</p>
           <p class="step-desc">
-            En el carrito, busca el campo "Tengo un codigo de descuento" e ingresa:<br /><br />
+            En el carrito, buscá el campo "Tengo un código de descuento" e ingresá:<br /><br />
             <span class="coupon-highlight">PELUQUERIA5</span><br /><br />
-            El descuento se aplica automaticamente sobre el total.
+            El descuento se aplica automáticamente sobre el total.
           </p>
         </div>
       </div>
       <div class="instruction-step">
         <div class="step-num">3</div>
         <div class="step-text">
-          <p class="step-title">Selecciona Retiro por local</p>
-          <p class="step-desc">En el paso de envio, elegi la opcion <strong>"Retiro en el local"</strong>. El costo de envio sera $0 y podras retirarlo hoy mismo.</p>
+          <p class="step-title">Seleccioná Retiro por local</p>
+          <p class="step-desc">En el paso de envío, elegí la opción <strong>"Retiro en el local"</strong>. El costo de envío será $0 y podés retirarlo hoy mismo.</p>
         </div>
       </div>
     </div>
 
     <div class="info-note">
       <span style="flex-shrink:0; margin-top:1px;">—</span>
-      <p class="info-note-text">El personal del local ya conoce el sistema. Podes mostrar la pantalla de confirmacion de tu pedido para retirar sin esperas.</p>
+      <p class="info-note-text">El personal del local ya conoce el sistema. Podés mostrar la pantalla de confirmación de tu pedido para retirar sin esperas.</p>
     </div>
 
     <a href="https://www.ameesencial.com.ar/productos/" class="btn-primary">Ir a la tienda AME Esencial</a>
-    <button class="restart-btn" onclick="restartQuiz()">Volver a hacer el diagnostico</button>
+    <button class="restart-btn" onclick="restartQuiz()">Volver a hacer el diagnóstico</button>
   </section>
 
   <footer class="site-footer">
-    <p>AME Esencial · Dermocosmetica · Aprobado ANMAT</p>
+    <p>AME Esencial · Dermocosmética · Aprobado ANMAT</p>
   </footer>
 
 </div>
@@ -467,8 +467,8 @@
     'kit-xl-seca': {
       name: 'Kit XL Piel Normal a Seca',
       tagline: 'Limpieza, hidratacion en capas y soporte de barrera.',
-      why: 'Tu piel tiende a la tirantez porque pierde agua con mayor facilidad (TEWL elevada). Este kit de cuatro pasos actua en cada nivel: limpia sin alterar el pH, tonifica con bruma de agua de rosas, hidrata con acido hialuronico de doble peso molecular y cierra con ceramidas que refuerzan la funcion barrera. El ciclo de renovacion celular de 28 dias empieza con el primer uso consistente.',
-      products: ['Gel de Limpieza Facial 150ml', 'Bruma Facial Hidratante 150ml', 'Serum Acido Hialuronico 30ml', 'Crema Facial Multivitaminica 50g'],
+      why: 'Tu piel tiende a la tirantez porque pierde agua con mayor facilidad (TEWL elevada). Este kit de cuatro pasos actúa en cada nivel: limpia sin alterar el pH, tonifica con bruma de agua de rosas, hidrata con ácido hialurónico de doble peso molecular y cierra con ceramidas que refuerzan la función barrera. El ciclo de renovación celular de 28 días empieza con el primer uso constante.',
+      products: ['Gel de Limpieza Facial 150ml', 'Bruma Facial Hidratante 150ml', 'Sérum Ácido Hialurónico 30ml', 'Crema Facial Multivitamínica 50g'],
       kitUrl: STORE + '/productos/kit-basico-xl-normal-seca/',
       individuals: [
         { name: 'Serum Acido Hialuronico', sub: '30ml · Hidratacion multicapa', url: STORE + '/productos/serum-acido-hialuronico-doble-peso-molecular-hidratacion-multicapa-vptpw/' },
@@ -480,8 +480,8 @@
     'kit-rutina-24hs': {
       name: 'Kit Rutina 24hs: Hidratacion y Renovacion',
       tagline: 'Reparacion activa en el ciclo celular completo.',
-      why: 'La perdida de luminosidad tiene origen quimico: acumulacion de celulas muertas, oxidacion y barrera debilitada. Este kit actua las 24 horas: de dia hidrata y protege con activos vitamínicos; de noche activa la renovacion celular con retinol. Sin agresion. Sin promesas vacias. Solo bioquimica aplicada con constancia.',
-      products: ['Gel de Limpieza Facial 150ml', 'Serum Acido Hialuronico 30ml', 'Crema Facial Multivitaminica 50g', 'Serum Retinol (uso nocturno)'],
+      why: 'La pérdida de luminosidad tiene origen químico: acumulación de células muertas, oxidación y barrera debilitada. Este kit actúa las 24 horas: de día hidrata y protege con activos vitamínicos; de noche activa la renovación celular con retinol. Sin agresión. Sin promesas vacías. Solo bioquímica aplicada con constancia.',
+      products: ['Gel de Limpieza Facial 150ml', 'Sérum Ácido Hialurónico 30ml', 'Crema Facial Multivitamínica 50g', 'Sérum Retinol (uso nocturno)'],
       kitUrl: STORE + '/productos/rutina-dia-y-noche/',
       individuals: [
         { name: 'Serum Retinol', sub: '30ml · Renovacion celular nocturna', url: STORE + '/productos/serum-retinol/' },
@@ -492,9 +492,9 @@
 
     'kit-mixta-grasa': {
       name: 'Kit Piel Mixta / Grasa',
-      tagline: 'Equilibrio sebaceo sin resecar ni brillar.',
-      why: 'El exceso de sebo no se combate eliminando la hidratacion: se equilibra entregando la humedad correcta para que la piel no compense produciendo mas grasa. Este kit usa texturas de absorcion inmediata, niacinamida reguladora y hamamelis tonificante. Resultado: menos brillo, poros menos visibles, piel mas uniforme.',
-      products: ['Gel de Limpieza Facial 150ml', 'Bruma Facial Hidratante 60ml', 'Serum Acido Hialuronico 30ml', 'Crema Gel Hidratante 50g'],
+      tagline: 'Equilibrio sebáceo sin resecar ni brillar.',
+      why: 'El exceso de sebo no se combate eliminando la hidratación: se equilibra entregando la humedad correcta para que la piel no compense produciendo más grasa. Este kit usa texturas de absorción inmediata, niacinamida reguladora y hamamelis tonificante. Resultado: menos brillo, poros menos visibles, piel más uniforme.',
+      products: ['Gel de Limpieza Facial 150ml', 'Bruma Facial Hidratante 60ml', 'Sérum Ácido Hialurónico 30ml', 'Crema Gel Hidratante 50g'],
       kitUrl: STORE + '/productos/kit-piel-mixta-grasa/',
       individuals: [
         { name: 'Crema Gel Hidratante', sub: '50g · Textura ultraligera', url: STORE + '/productos/crema-gel-hidratante/' },
@@ -506,8 +506,8 @@
     'kit-normal-mixta': {
       name: 'Kit Piel Normal / Mixta',
       tagline: 'Rutina completa para piel que necesita equilibrio.',
-      why: 'La piel mixta con zona T brillante necesita activos que regulen sin resecar las mejillas. Este kit equilibra las dos necesidades en una sola rutina: limpieza suave, hidratacion con acido hialuronico y una crema de textura intermedia que no satura el poro ni deja la piel tensa.',
-      products: ['Gel de Limpieza Facial', 'Serum Acido Hialuronico', 'Crema Facial Hidratante', 'Bruma Hidratante'],
+      why: 'La piel mixta con zona T brillante necesita activos que regulen sin resecar las mejillas. Este kit equilibra las dos necesidades en una sola rutina: limpieza suave, hidratación con ácido hialurónico y una crema de textura intermedia que no satura el poro ni deja la piel tensa.',
+      products: ['Gel de Limpieza Facial', 'Sérum Ácido Hialurónico', 'Crema Facial Hidratante', 'Bruma Hidratante'],
       kitUrl: STORE + '/productos/kit-piel-normal-mixta/',
       individuals: [
         { name: 'Crema Gel Hidratante', sub: '50g · Textura ultraligera', url: STORE + '/productos/crema-gel-hidratante/' },
@@ -518,9 +518,9 @@
 
     'kit-luminosa': {
       name: 'Kit Piel Luminosa Real',
-      tagline: 'Luminosidad desde la quimica, no desde el maquillaje.',
-      why: 'La piel sensible reacciona a la sobrecarga de ingredientes. El principio de este kit es la sustraccion: formulaciones minimas, sin fragancia, con activos calmantes documentados. Aporta luminosidad de forma gradual mientras reconstruye la barrera. Sin estresar los receptores de irritacion. INCI limpio.',
-      products: ['Gel de Limpieza Facial', 'Bruma Hidratante y Calmante', 'Serum Acido Hialuronico', 'Crema Facial Hidratante'],
+      tagline: 'Luminosidad desde la química, no desde el maquillaje.',
+      why: 'La piel sensible reacciona a la sobrecarga de ingredientes. El principio de este kit es la sustracción: formulaciones mínimas, sin fragancia, con activos calmantes documentados. Aporta luminosidad de forma gradual mientras reconstruye la barrera. Sin estresar los receptores de irritación. INCI limpio.',
+      products: ['Gel de Limpieza Facial', 'Bruma Hidratante y Calmante', 'Sérum Ácido Hialurónico', 'Crema Facial Hidratante'],
       kitUrl: STORE + '/productos/kit-piel-luminosa-gq77r/',
       individuals: [
         { name: 'Bruma Hidratante y Calmante', sub: '150ml · Centella asiatica', url: STORE + '/productos/bruma-hidratante-y-calmante-150-ml/' },
@@ -532,8 +532,8 @@
     'kit-dinamico': {
       name: 'Kit Rutina Dinamica',
       tagline: 'Lo esencial. Lo que realmente necesitas.',
-      why: 'Una rutina eficaz no necesita diez productos: necesita los correctos. Este kit fue disenado para quienes buscan simplicidad sin resignar resultados. Limpieza suave, hidratacion funcional con acido hialuronico y soporte de barrera. La base de cualquier protocolo dermatologico, aplicada con constancia durante 28 dias.',
-      products: ['Gel de Limpieza Facial', 'Serum Acido Hialuronico', 'Crema Facial Hidratante'],
+      why: 'Una rutina eficaz no necesita diez productos: necesita los correctos. Este kit fue diseñado para quienes buscan simplicidad sin resignar resultados. Limpieza suave, hidratación funcional con ácido hialurónico y soporte de barrera. La base de cualquier protocolo dermatológico, aplicada con constancia durante 28 días.',
+      products: ['Gel de Limpieza Facial', 'Sérum Ácido Hialurónico', 'Crema Facial Hidratante'],
       kitUrl: STORE + '/productos/kit-rutina-dinamica-1mfdo/',
       individuals: [
         { name: 'Gel de Limpieza Facial', sub: '150ml · pH balanceado', url: STORE + '/productos/gel-calmante-de-limpieza-facial-150-ml/' },
@@ -579,12 +579,12 @@
   function showResults() {
     const kit = KITS[getKitKey(state.skinType, state.objetivo)];
     const ctaBtn = IS_LOCAL
-      ? `<button class="btn-primary" onclick="goToScreen(4)">Como usar mi descuento</button>`
+      ? `<button class="btn-primary" onclick="goToScreen(4)">Cómo usar mi descuento</button>`
       : `<a href="${STORE}/productos/" class="btn-primary">Ir a la tienda AME Esencial</a>`;
 
     document.getElementById('screen-3').innerHTML = `
       <p class="eyebrow">Tu resultado</p>
-      <span class="result-badge">Recomendacion personalizada</span>
+      <span class="result-badge">Recomendación personalizada</span>
 
       <div class="kit-card">
         <div class="kit-card-header">
@@ -593,7 +593,7 @@
           <span class="kit-tagline">${kit.tagline}</span>
         </div>
         <div class="kit-card-body">
-          <p class="kit-why-title">Por que este kit</p>
+          <p class="kit-why-title">Por qué este kit</p>
           <p class="kit-why-text">${kit.why}</p>
           <div class="kit-includes">
             <p class="kit-includes-title">El kit incluye</p>
@@ -604,7 +604,7 @@
       </div>
 
       <div class="individuals-section">
-        <p class="individuals-title">Tambien podés elegir por producto</p>
+        <p class="individuals-title">También podés elegir por producto</p>
         ${kit.individuals.map(p => `
           <div class="product-mini-card">
             <div>
