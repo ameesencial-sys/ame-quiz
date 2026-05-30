@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cómo Comprar — AME Esencial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:  #000000;
+      --mid:    #444444;
+      --light:  #888888;
+      --border: rgba(0,0,0,0.10);
+      --bg:     #ffffff;
+      --bg-alt: #f5f5f5;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-ui:      'Jost', system-ui, sans-serif;
+    }
+
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+    body {
+      background: var(--bg);
+      color: var(--black);
+      font-family: var(--font-ui);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    /* ── BACK + HEADER ── */
+    .back-bar { padding: 10px 24px; border-bottom: 1px solid var(--border); background: var(--bg-alt); }
+    .back-link {
+      font-size: 0.72rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--mid); text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .back-link::before { content: '←'; font-size: 0.9rem; }
+
+    .site-header {
+      padding: 20px 24px 16px; display: flex; justify-content: center;
+      border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg); z-index: 10;
+    }
+    .logo-text {
+      font-family: var(--font-display); font-weight: 300; font-size: 1rem;
+      letter-spacing: 0.3em; text-transform: uppercase; color: var(--black);
+    }
+
+    /* ── WRAPPER ── */
+    .page-wrapper { max-width: 680px; margin: 0 auto; }
+
+    /* ── HERO INTRO ── */
+    .hero-intro {
+      background: var(--black); color: white; padding: 44px 28px 40px;
+    }
+    .hero-eyebrow {
+      font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+      opacity: 0.5; display: block; margin-bottom: 12px;
+    }
+    .hero-title {
+      font-family: var(--font-display); font-size: 2.8rem; font-weight: 300;
+      line-height: 1.05; margin-bottom: 16px;
+    }
+    .hero-title em { font-style: italic; }
+    .hero-body { font-size: 0.88rem; font-weight: 300; opacity: 0.75; line-height: 1.75; }
+
+    /* ── FASES ── */
+    .fase-header {
+      display: flex; align-items: center; gap: 16px;
+      padding: 22px 28px 0;
+    }
+    .fase-num {
+      width: 32px; height: 32px; border: 1.5px solid var(--black); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 1rem; font-weight: 400;
+      color: var(--black); flex-shrink: 0;
+    }
+    .fase-title-wrap {}
+    .fase-label { font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--light); display: block; margin-bottom: 1px; }
+    .fase-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 300; color: var(--black); line-height: 1.1; }
+
+    /* ── STEPS ── */
+    .steps-block { padding: 16px 28px 28px; }
+
+    .step {
+      display: flex; gap: 16px; padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .step:last-child { border-bottom: none; }
+
+    .step-num {
+      font-family: var(--font-display); font-size: 2rem; font-weight: 300;
+      color: #ddd; line-height: 1; flex-shrink: 0; width: 32px; text-align: right;
+      margin-top: 2px;
+    }
+    .step-content { flex: 1; }
+    .step-title { font-size: 0.9rem; font-weight: 500; color: var(--black); margin-bottom: 5px; letter-spacing: 0.01em; }
+    .step-desc { font-size: 0.82rem; font-weight: 300; color: var(--mid); line-height: 1.7; }
+
+    /* ── DIVIDER ENTRE FASES ── */
+    .fase-divider { height: 1px; background: var(--black); margin: 0 28px; opacity: 0.08; }
+
+    /* ── BLOQUE ENVÍOS ── */
+    .envio-block {
+      margin: 0; background: var(--bg-alt);
+      padding: 32px 28px;
+    }
+    .envio-label {
+      font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--light); display: block; margin-bottom: 12px;
+    }
+    .envio-title {
+      font-family: var(--font-display); font-size: 1.3rem; font-weight: 300;
+      color: var(--black); margin-bottom: 18px; line-height: 1.2;
+    }
+    .envio-options { display: flex; flex-direction: column; gap: 10px; }
+    .envio-option {
+      background: white; border: 1px solid var(--border); border-radius: 2px; padding: 16px 18px;
+    }
+    .envio-option-title { font-size: 0.84rem; font-weight: 500; color: var(--black); margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+    .envio-option-title::before { content: ''; width: 6px; height: 6px; background: var(--black); border-radius: 50%; flex-shrink: 0; }
+    .envio-option-desc { font-size: 0.79rem; font-weight: 300; color: var(--mid); line-height: 1.65; }
+
+    /* ── NOTA IMPORTANTE ── */
+    .nota {
+      margin: 0; padding: 24px 28px;
+      border-top: 2px solid var(--black);
+      border-bottom: 1px solid var(--border);
+    }
+    .nota-label { font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--light); display: block; margin-bottom: 6px; }
+    .nota-text { font-size: 0.82rem; font-weight: 300; color: var(--mid); line-height: 1.7; }
+
+    /* ── CTA FINAL ── */
+    .cta-bar {
+      padding: 40px 28px; text-align: center; display: flex; flex-direction: column;
+      align-items: center; gap: 14px;
+    }
+    .cta-pre { font-family: var(--font-display); font-size: 1.6rem; font-weight: 300; color: var(--black); line-height: 1.2; }
+    .cta-pre em { font-style: italic; }
+    .cta-btn {
+      display: inline-block; padding: 15px 36px; background: var(--black); color: white;
+      font-family: var(--font-ui); font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none;
+      border-radius: 2px; margin-top: 4px;
+    }
+    .cta-btn:active { opacity: 0.8; }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      padding: 20px 28px; text-align: center;
+      border-top: 1px solid var(--border); background: var(--bg-alt);
+    }
+    .site-footer p { font-size: 0.67rem; letter-spacing: 0.08em; color: var(--light); text-transform: uppercase; }
+
+    @media (min-width: 700px) {
+      .hero-title { font-size: 3.6rem; }
+      .envio-options { flex-direction: row; }
+      .envio-option { flex: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="back-bar">
+    <a href="https://www.ameesencial.com.ar" class="back-link">Volver a AME Esencial</a>
+  </div>
+
+  <header class="site-header">
+    <span class="logo-text">AME Esencial</span>
+  </header>
+
+  <div class="page-wrapper">
+
+    <!-- ── INTRO ── -->
+    <div class="hero-intro">
+      <span class="hero-eyebrow">Guía de compra</span>
+      <h1 class="hero-title">Comprar en AME<br />es <em>simple.</em></h1>
+      <p class="hero-body">
+        Diez pasos claros para que tu pedido llegue sin contratiempos. Desde que elegís el producto hasta que lo tenés en tus manos.
+      </p>
+    </div>
+
+    <!-- ══════════════════════
+         FASE 1: TU SELECCIÓN
+    ══════════════════════ -->
+    <div class="fase-header">
+      <div class="fase-num">I</div>
+      <div class="fase-title-wrap">
+        <span class="fase-label">Primera etapa</span>
+        <span class="fase-title">Tu selección</span>
+      </div>
+    </div>
+
+    <div class="steps-block">
+      <div class="step">
+        <span class="step-num">1</span>
+        <div class="step-content">
+          <p class="step-title">Elegí el producto que querés comprar</p>
+          <p class="step-desc">Navegá por nuestro catálogo y seleccioná los productos que te interesan. Podés explorar por categorías y leer las descripciones para elegir lo mejor para tu piel.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">2</span>
+        <div class="step-content">
+          <p class="step-title">Agregá productos al carrito</p>
+          <p class="step-desc">Cuando encuentres lo que buscás, hacé clic en "Agregar al carrito". Podés seguir sumando productos o, si ya terminaste, pasar al siguiente paso.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="fase-divider"></div>
+
+    <!-- ══════════════════════
+         FASE 2: TU PEDIDO
+    ══════════════════════ -->
+    <div class="fase-header">
+      <div class="fase-num">II</div>
+      <div class="fase-title-wrap">
+        <span class="fase-label">Segunda etapa</span>
+        <span class="fase-title">Tu pedido</span>
+      </div>
+    </div>
+
+    <div class="steps-block">
+      <div class="step">
+        <span class="step-num">3</span>
+        <div class="step-content">
+          <p class="step-title">Iniciá la compra</p>
+          <p class="step-desc">Hacé clic en "Iniciar compra". Esto te llevará a la pantalla donde vas a ingresar tus datos para concretar el pedido.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">4</span>
+        <div class="step-content">
+          <p class="step-title">Completá tus datos de contacto</p>
+          <p class="step-desc">Ingresá tu nombre, correo electrónico y teléfono para que podamos comunicarnos con vos si hace falta. Luego, hacé clic en "Continuar".</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">5</span>
+        <div class="step-content">
+          <p class="step-title">Indicá la dirección de envío</p>
+          <p class="step-desc">Escribí la dirección donde querés recibir tu pedido. Asegurate de que los datos estén completos y correctos para evitar demoras. Después, hacé clic en "Continuar".</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">6</span>
+        <div class="step-content">
+          <p class="step-title">Seleccioná el medio de envío</p>
+          <p class="step-desc">Elegí la opción que mejor se adapte a vos: retiro en sucursal o envío a domicilio. Más abajo encontrás el detalle de cada modalidad.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">7</span>
+        <div class="step-content">
+          <p class="step-title">Elegí el medio de pago</p>
+          <p class="step-desc">Podés pagar con tarjeta, transferencia o cualquier otro método disponible. Una vez seleccionado, hacé clic en "Continuar".</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">8</span>
+        <div class="step-content">
+          <p class="step-title">Confirmá tu compra</p>
+          <p class="step-desc">Antes de finalizar, vas a ver un resumen completo de tu pedido. Revisalo con atención y, si está todo bien, confirmá la compra.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="fase-divider"></div>
+
+    <!-- ══════════════════════
+         FASE 3: TU ENTREGA
+    ══════════════════════ -->
+    <div class="fase-header">
+      <div class="fase-num">III</div>
+      <div class="fase-title-wrap">
+        <span class="fase-label">Tercera etapa</span>
+        <span class="fase-title">Tu entrega</span>
+      </div>
+    </div>
+
+    <div class="steps-block">
+      <div class="step">
+        <span class="step-num">9</span>
+        <div class="step-content">
+          <p class="step-title">Recibí la confirmación por e-mail</p>
+          <p class="step-desc">Una vez que confirmes la compra, te enviamos un correo avisándote que recibimos tu pedido.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">10</span>
+        <div class="step-content">
+          <p class="step-title">Procesamiento y envío</p>
+          <p class="step-desc">Cuando recibamos el pago, te enviamos el comprobante y preparamos tu pedido. El despacho se realiza al día siguiente de la compra para que recibas tus productos lo antes posible.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODALIDADES DE ENVÍO ── -->
+    <div class="envio-block">
+      <span class="envio-label">Modalidades de envío</span>
+      <p class="envio-title">¿Cómo querés recibir tu pedido?</p>
+      <div class="envio-options">
+        <div class="envio-option">
+          <p class="envio-option-title">Envío a sucursal</p>
+          <p class="envio-option-desc">El pedido se despacha y queda disponible para retirar en la sucursal de correo más cercana a tu domicilio. Ideal si no estás en casa durante el día.</p>
+        </div>
+        <div class="envio-option">
+          <p class="envio-option-title">Envío a domicilio</p>
+          <p class="envio-option-desc">El correo pasa una sola vez por tu dirección. Si no te encuentra, el paquete se devuelve a la sucursal más cercana para que puedas retirarlo.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── NOTA ── -->
+    <div class="nota">
+      <span class="nota-label">Importante</span>
+      <p class="nota-text">
+        Si tenés alguna duda durante el proceso de compra, podés escribirnos por WhatsApp o por correo electrónico. Respondemos a la brevedad para que tu pedido no se demore.
+      </p>
+    </div>
+
+    <!-- ── CTA ── -->
+    <div class="cta-bar">
+      <p class="cta-pre">¿Todo claro?<br /><em>Empecemos.</em></p>
+      <a href="https://www.ameesencial.com.ar/productos/" class="cta-btn">Ver productos</a>
+    </div>
+
+  </div><!-- /.page-wrapper -->
+
+  <footer class="site-footer">
+    <p>AME Esencial · Dermocosmética · Aprobado ANMAT</p>
+  </footer>
+
+</body>
+</html>
