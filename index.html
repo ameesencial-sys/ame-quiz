@@ -6,7 +6,7 @@
   <title>AME Esencial — Conocé tu piel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -19,7 +19,7 @@
       --border:   rgba(0,0,0,0.11);
       --bg:       #ffffff;
       --bg-alt:   #f5f5f5;
-      --bg-dark:  #f0f0f0;
+      --bg-dark:  #efefef;
       --font-display: 'Cormorant Garamond', Georgia, serif;
       --font-body:    'Marcellus', Georgia, serif;
       --font-ui:      'Jost', system-ui, sans-serif;
@@ -28,43 +28,16 @@
     }
 
     html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+    body { background: var(--bg); color: var(--charcoal); font-family: var(--font-ui); font-weight: 300; line-height: 1.6; min-height: 100vh; }
 
-    body {
-      background: var(--bg);
-      color: var(--charcoal);
-      font-family: var(--font-ui);
-      font-weight: 300;
-      line-height: 1.6;
-      min-height: 100vh;
-    }
+    .quiz-wrapper { width: 100%; max-width: 480px; min-height: 100vh; display: flex; flex-direction: column; margin: 0 auto; background: var(--bg); }
 
-    .quiz-wrapper {
-      width: 100%;
-      max-width: 480px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      margin: 0 auto;
-      background: var(--bg);
-    }
-
-    /* ── BACK BAR ── */
+    /* ── BACK + HEADER ── */
     .back-bar { padding: 10px 20px; border-bottom: 1px solid var(--border); background: var(--bg-alt); }
-    .back-link {
-      font-size: 0.72rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--mid); text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
-    }
+    .back-link { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
     .back-link::before { content: '←'; font-size: 0.9rem; }
-
-    /* ── HEADER ── */
-    .site-header {
-      padding: 18px 24px 14px; display: flex; justify-content: center;
-      border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg); z-index: 10;
-    }
-    .logo-text {
-      font-family: var(--font-display); font-weight: 300; font-size: 1rem;
-      letter-spacing: 0.3em; text-transform: uppercase; color: var(--black);
-    }
+    .site-header { padding: 18px 24px 14px; display: flex; justify-content: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg); z-index: 10; }
+    .logo-text { font-family: var(--font-display); font-weight: 300; font-size: 1rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--black); }
 
     /* ── PROGRESS ── */
     .progress-bar-wrap { height: 2px; background: var(--bg-dark); }
@@ -79,14 +52,13 @@
     .eyebrow { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--light); margin-bottom: 10px; }
     .screen-title { font-family: var(--font-display); font-size: 1.9rem; font-weight: 300; line-height: 1.15; color: var(--black); margin-bottom: 12px; }
     .screen-title em { font-style: italic; }
-    .screen-subtitle { font-size: 0.86rem; font-weight: 300; color: var(--mid); line-height: 1.7; margin-bottom: 28px; }
+    .screen-subtitle { font-size: 0.86rem; font-weight: 300; color: var(--mid); line-height: 1.7; margin-bottom: 24px; }
 
-    /* ── QUESTION BLOCK ── */
-    .q-block { margin-bottom: 24px; }
-    .q-block:last-of-type { margin-bottom: 8px; }
-    .q-num { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--light); margin-bottom: 5px; }
-    .q-label { font-family: var(--font-body); font-size: 0.95rem; color: var(--black); margin-bottom: 12px; line-height: 1.4; }
-    .q-divider { height: 1px; background: var(--bg-dark); margin: 24px 0; }
+    /* ── QUESTION BLOCKS ── */
+    .q-block { margin-bottom: 22px; }
+    .q-num { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--light); margin-bottom: 5px; display: block; }
+    .q-label { font-family: var(--font-body); font-size: 0.93rem; color: var(--black); margin-bottom: 11px; line-height: 1.4; }
+    .q-divider { height: 1px; background: var(--bg-dark); margin: 22px 0; }
 
     /* ── OPTIONS ── */
     .options-grid { display: flex; flex-direction: column; gap: 8px; }
@@ -99,51 +71,24 @@
     }
     .option-btn.selected { border-color: var(--black); background: var(--bg-alt); }
     .option-btn:active { transform: scale(0.99); }
-    .option-marker {
-      width: 16px; height: 16px; border: 1.5px solid #ccc; border-radius: 50%;
-      flex-shrink: 0; margin-top: 2px; display: flex; align-items: center;
-      justify-content: center; transition: all var(--ease);
-    }
+    .option-marker { width: 16px; height: 16px; border: 1.5px solid #ccc; border-radius: 50%; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; transition: all var(--ease); }
     .option-btn.selected .option-marker { border-color: var(--black); background: var(--black); }
-    .option-marker::after {
-      content: ''; width: 5px; height: 5px; background: white;
-      border-radius: 50%; opacity: 0; transition: opacity var(--ease);
-    }
+    .option-marker::after { content: ''; width: 5px; height: 5px; background: white; border-radius: 50%; opacity: 0; transition: opacity var(--ease); }
     .option-btn.selected .option-marker::after { opacity: 1; }
     .option-name { font-size: 0.84rem; font-weight: 400; color: var(--black); display: block; margin-bottom: 2px; }
     .option-detail { font-size: 0.74rem; font-weight: 300; color: var(--light); display: block; line-height: 1.45; }
 
     /* ── BUTTONS ── */
-    .btn-primary {
-      display: block; width: 100%; padding: 16px 24px; background: var(--black); color: white;
-      font-family: var(--font-ui); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.14em;
-      text-transform: uppercase; border: none; border-radius: var(--radius); cursor: pointer;
-      text-align: center; text-decoration: none; transition: opacity var(--ease);
-      -webkit-tap-highlight-color: transparent;
-    }
+    .btn-primary { display: block; width: 100%; padding: 16px 24px; background: var(--black); color: white; font-family: var(--font-ui); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; border: none; border-radius: var(--radius); cursor: pointer; text-align: center; text-decoration: none; transition: opacity var(--ease); -webkit-tap-highlight-color: transparent; }
     .btn-primary:disabled { opacity: 0.3; cursor: not-allowed; }
-    .btn-primary:not(:disabled):active { opacity: 0.8; transform: scale(0.98); }
-    .btn-secondary {
-      display: block; width: 100%; padding: 14px 24px; background: transparent; color: var(--black);
-      font-family: var(--font-ui); font-size: 0.78rem; font-weight: 400; letter-spacing: 0.14em;
-      text-transform: uppercase; border: 1px solid var(--black); border-radius: var(--radius);
-      cursor: pointer; text-align: center; text-decoration: none; margin-top: 10px;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .restart-btn {
-      display: block; width: 100%; padding: 13px; background: transparent; color: var(--light);
-      font-family: var(--font-ui); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
-      border: none; cursor: pointer; text-align: center; margin-top: 6px;
-    }
+    .btn-primary:not(:disabled):active { opacity: 0.8; }
+    .btn-secondary { display: block; width: 100%; padding: 14px 24px; background: transparent; color: var(--black); font-family: var(--font-ui); font-size: 0.78rem; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; border: 1px solid var(--black); border-radius: var(--radius); cursor: pointer; text-align: center; text-decoration: none; margin-top: 10px; }
+    .restart-btn { display: block; width: 100%; padding: 13px; background: transparent; color: var(--light); font-family: var(--font-ui); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; text-align: center; margin-top: 6px; }
 
     /* ── WELCOME ── */
     #screen-1 { justify-content: space-between; }
     .welcome-top { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-    .welcome-badge {
-      display: inline-block; padding: 5px 12px; border: 1px solid var(--border); border-radius: 100px;
-      font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid);
-      margin-bottom: 20px; width: fit-content;
-    }
+    .welcome-badge { display: inline-block; padding: 5px 12px; border: 1px solid var(--border); border-radius: 100px; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); margin-bottom: 20px; width: fit-content; }
     .welcome-title { font-family: var(--font-display); font-size: 2.3rem; font-weight: 300; line-height: 1.1; color: var(--black); margin-bottom: 16px; }
     .welcome-title em { font-style: italic; }
     .welcome-body { font-size: 0.88rem; font-weight: 300; color: var(--mid); line-height: 1.75; margin-bottom: 28px; }
@@ -154,86 +99,43 @@
     .stat-label { display: block; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light); }
 
     /* ── RESULTS ── */
-    .result-badge {
-      display: inline-block; padding: 4px 11px; background: var(--bg-alt); border: 1px solid var(--border);
-      border-radius: 100px; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--mid); margin-bottom: 14px; width: fit-content;
-    }
+    .result-badge { display: inline-block; padding: 4px 11px; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 100px; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); margin-bottom: 14px; width: fit-content; }
     .kit-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 8px; }
     .kit-card-header { background: var(--black); color: white; padding: 16px 18px 13px; }
-    .kit-label { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.55; display: block; margin-bottom: 5px; font-family: var(--font-ui); }
+    .kit-label-tag { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.55; display: block; margin-bottom: 5px; font-family: var(--font-ui); }
     .kit-name { font-family: var(--font-display); font-size: 1.55rem; font-weight: 300; line-height: 1.1; display: block; margin-bottom: 4px; }
     .kit-tagline { font-size: 0.73rem; opacity: 0.65; font-family: var(--font-ui); font-weight: 300; }
     .kit-card-body { padding: 16px 18px; }
     .kit-why-title { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light); margin-bottom: 7px; font-family: var(--font-ui); }
-    .kit-why-text { font-size: 0.83rem; font-weight: 300; color: var(--mid); line-height: 1.65; margin-bottom: 16px; }
+    .kit-why-text { font-size: 0.83rem; font-weight: 300; color: var(--mid); line-height: 1.7; margin-bottom: 16px; }
     .kit-includes { display: flex; flex-direction: column; gap: 5px; margin-bottom: 16px; padding: 13px; background: var(--bg-alt); border-radius: var(--radius); }
     .kit-includes-title { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light); margin-bottom: 5px; font-family: var(--font-ui); }
     .kit-product-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--charcoal); font-weight: 300; }
     .kit-product-item::before { content: ''; width: 3px; height: 3px; background: #bbb; border-radius: 50%; flex-shrink: 0; }
-    .btn-kit {
-      display: block; width: 100%; padding: 14px 24px; background: var(--black); color: white;
-      font-family: var(--font-ui); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em;
-      text-transform: uppercase; border: none; border-radius: var(--radius); cursor: pointer;
-      text-align: center; text-decoration: none; transition: opacity 0.2s;
-    }
+    .btn-kit { display: block; width: 100%; padding: 14px 24px; background: var(--black); color: white; font-family: var(--font-ui); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; border: none; border-radius: var(--radius); cursor: pointer; text-align: center; text-decoration: none; }
     .btn-kit:active { opacity: 0.8; }
 
-    /* ── COMBO CARD (sin kit empaquetado) ── */
-    .combo-header {
-      padding: 16px 18px 13px; background: var(--black); color: white;
-      border-radius: var(--radius) var(--radius) 0 0;
-    }
-    .combo-products { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
-    .combo-product-row {
-      display: flex; align-items: center; justify-content: space-between; gap: 12px;
-      padding: 13px 15px; background: white; border: 1px solid var(--border); border-radius: var(--radius);
-    }
-    .combo-product-row .product-mini-name { display: block; font-size: 0.82rem; font-weight: 400; color: var(--black); margin-bottom: 2px; font-family: var(--font-body); }
-    .combo-product-row .product-mini-sub  { display: block; font-size: 0.71rem; font-weight: 300; color: var(--light); }
-    .product-mini-btn {
-      flex-shrink: 0; padding: 7px 13px; background: transparent; border: 1px solid var(--black);
-      border-radius: var(--radius); font-family: var(--font-ui); font-size: 0.65rem; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); text-decoration: none;
-      white-space: nowrap;
-    }
-    .product-mini-btn:active { background: var(--black); color: white; }
-
-    /* ── INDIVIDUALS ── */
+    /* ── INDIVIDUAL PRODUCTS ── */
     .individuals-section { margin-top: 22px; }
-    .individuals-title {
-      font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light);
-      margin-bottom: 12px; display: flex; align-items: center; gap: 10px; font-family: var(--font-ui);
-    }
+    .individuals-title { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; font-family: var(--font-ui); }
     .individuals-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-    .product-mini-card {
-      display: flex; align-items: center; justify-content: space-between; gap: 12px;
-      padding: 13px 15px; background: white; border: 1px solid var(--border);
-      border-radius: var(--radius); margin-bottom: 7px;
-    }
-    .product-mini-name { display: block; font-size: 0.82rem; font-weight: 400; color: var(--black); margin-bottom: 2px; font-family: var(--font-body); }
-    .product-mini-sub  { display: block; font-size: 0.71rem; font-weight: 300; color: var(--light); }
+    .product-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 15px; margin-bottom: 8px; }
+    .product-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+    .product-card-name { font-size: 0.85rem; font-weight: 500; color: var(--black); font-family: var(--font-body); }
+    .product-card-sub { font-size: 0.71rem; font-weight: 300; color: var(--light); display: block; margin-top: 2px; }
+    .product-card-desc { font-size: 0.78rem; font-weight: 300; color: var(--mid); line-height: 1.65; border-top: 1px solid var(--border); padding-top: 8px; }
+    .btn-product { flex-shrink: 0; padding: 7px 13px; background: transparent; border: 1px solid var(--black); border-radius: var(--radius); font-family: var(--font-ui); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); text-decoration: none; white-space: nowrap; }
+    .btn-product:active { background: var(--black); color: white; }
 
-    /* ── STEP 5 (local only) ── */
+    /* ── STEP 5 LOCAL ── */
     .instruction-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; margin-bottom: 10px; }
     .instruction-step { display: flex; gap: 15px; align-items: flex-start; margin-bottom: 16px; }
     .instruction-step:last-child { margin-bottom: 0; }
-    .step-num {
-      width: 26px; height: 26px; border: 1.5px solid var(--black); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.7rem; font-weight: 500; color: var(--black); flex-shrink: 0;
-    }
+    .step-num { width: 26px; height: 26px; border: 1.5px solid var(--black); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 500; color: var(--black); flex-shrink: 0; }
     .step-title { font-size: 0.83rem; font-weight: 500; color: var(--black); margin-bottom: 4px; }
     .step-desc { font-size: 0.78rem; font-weight: 300; color: var(--mid); line-height: 1.6; }
-    .coupon-highlight {
-      display: inline-block; padding: 2px 9px; background: var(--bg-alt); border: 1px solid var(--border);
-      border-radius: 2px; font-family: monospace; font-size: 0.88rem; font-weight: bold;
-      color: var(--black); letter-spacing: 0.06em;
-    }
-    .info-note {
-      display: flex; gap: 10px; padding: 13px 15px; background: var(--bg-alt);
-      border: 1px solid var(--border); border-radius: var(--radius); margin: 14px 0 18px;
-    }
+    .coupon-highlight { display: inline-block; padding: 2px 9px; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 2px; font-family: monospace; font-size: 0.88rem; font-weight: bold; color: var(--black); letter-spacing: 0.06em; }
+    .info-note { display: flex; gap: 10px; padding: 13px 15px; background: var(--bg-alt); border: 1px solid var(--border); border-radius: var(--radius); margin: 14px 0 18px; }
     .info-note-text { font-size: 0.78rem; font-weight: 300; color: var(--charcoal); line-height: 1.55; }
 
     /* ── FOOTER ── */
@@ -249,7 +151,6 @@
     }
   </style>
 </head>
-
 <body>
 <div class="quiz-wrapper">
 
@@ -265,20 +166,18 @@
     <div class="progress-bar-fill" id="progress-bar"></div>
   </div>
 
-  <!-- ══════════════════════════════════════
-       SCREEN 1: BIENVENIDA
-  ══════════════════════════════════════ -->
+  <!-- ══ SCREEN 1: BIENVENIDA ══ -->
   <section class="screen active" id="screen-1">
     <div class="welcome-top">
       <div>
         <span class="welcome-badge">Diagnóstico clínico</span>
         <h1 class="welcome-title">Conocé lo que<br />tu piel <em>necesita.</em></h1>
         <p class="welcome-body">
-          Seis preguntas. Sin tecnicismos. Al final, una recomendación basada en la biología real de tu piel — no en tendencias ni en marketing.
+          Ocho preguntas sobre el comportamiento real de tu piel. Al final, una recomendación basada en tu biología — no en tendencias.
         </p>
         <div class="welcome-stats">
           <div class="stat-item">
-            <span class="stat-num">6</span>
+            <span class="stat-num">8</span>
             <span class="stat-label">Preguntas</span>
           </div>
           <div class="stat-item">
@@ -294,50 +193,96 @@
     </div>
     <div>
       <button class="btn-primary" onclick="goToScreen(2)">Comenzar diagnóstico</button>
-      <p style="font-size:0.7rem; color:var(--light); text-align:center; margin-top:10px; letter-spacing:0.04em;">
-        Aprobado ANMAT · Sin datos personales requeridos
-      </p>
+      <p style="font-size:0.7rem; color:var(--light); text-align:center; margin-top:10px; letter-spacing:0.04em;">Aprobado ANMAT · Sin datos personales requeridos</p>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════
-       SCREEN 2: PREGUNTAS 1–3
-  ══════════════════════════════════════ -->
+  <!-- ══ SCREEN 2: PREGUNTAS 1–4 ══ -->
   <section class="screen" id="screen-2">
-    <p class="eyebrow">Parte 1 de 2 — Tu piel</p>
+    <p class="eyebrow">Parte 1 de 2 — Tu perfil</p>
     <h2 class="screen-title">El <em>diagnóstico</em></h2>
-    <p class="screen-subtitle">Respondé con honestidad. No hay respuesta correcta ni incorrecta.</p>
+    <p class="screen-subtitle">Respondé con lo que notás habitualmente, no en un día atípico.</p>
 
-    <!-- P1 -->
     <div class="q-block">
-      <p class="q-num">Pregunta 1 — Comportamiento del sebo</p>
-      <p class="q-label">¿Cómo sentís tu rostro hacia la mitad del día?</p>
+      <span class="q-num">Pregunta 1</span>
+      <p class="q-label">¿Cuál es tu rango de edad?</p>
       <div class="options-grid">
         <button class="option-btn" data-group="q1" data-value="A" onclick="selectOption(this)">
+          <span class="option-marker"></span><span><span class="option-name">Menos de 25 años</span></span>
+        </button>
+        <button class="option-btn" data-group="q1" data-value="B" onclick="selectOption(this)">
+          <span class="option-marker"></span><span><span class="option-name">Entre 25 y 35 años</span></span>
+        </button>
+        <button class="option-btn" data-group="q1" data-value="C" onclick="selectOption(this)">
+          <span class="option-marker"></span><span><span class="option-name">Entre 36 y 50 años</span></span>
+        </button>
+        <button class="option-btn" data-group="q1" data-value="D" onclick="selectOption(this)">
+          <span class="option-marker"></span><span><span class="option-name">Más de 50 años</span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="q-divider"></div>
+
+    <div class="q-block">
+      <span class="q-num">Pregunta 2</span>
+      <p class="q-label">¿Tu piel es sensible o reactiva?</p>
+      <div class="options-grid">
+        <button class="option-btn" data-group="q2" data-value="A" onclick="selectOption(this)">
           <span class="option-marker"></span>
           <span>
-            <span class="option-name">Tirante, áspero o sin luminosidad</span>
+            <span class="option-name">Sí, con frecuencia</span>
+            <span class="option-detail">Suele enrojecerse, arder o irritarse con cambios de clima o ciertos cosméticos</span>
+          </span>
+        </button>
+        <button class="option-btn" data-group="q2" data-value="B" onclick="selectOption(this)">
+          <span class="option-marker"></span>
+          <span>
+            <span class="option-name">A veces</span>
+            <span class="option-detail">Solo frente a estímulos muy puntuales</span>
+          </span>
+        </button>
+        <button class="option-btn" data-group="q2" data-value="C" onclick="selectOption(this)">
+          <span class="option-marker"></span>
+          <span>
+            <span class="option-name">Rara vez</span>
+            <span class="option-detail">En general tolera bien cualquier producto</span>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <div class="q-divider"></div>
+
+    <div class="q-block">
+      <span class="q-num">Pregunta 3</span>
+      <p class="q-label">¿Cómo sentís tu piel habitualmente?</p>
+      <div class="options-grid">
+        <button class="option-btn" data-group="q3" data-value="A" onclick="selectOption(this)">
+          <span class="option-marker"></span>
+          <span>
+            <span class="option-name">Tirante, áspera o sin luminosidad</span>
             <span class="option-detail">La piel se ve apagada y pide hidratación constantemente</span>
           </span>
         </button>
-        <button class="option-btn" data-group="q1" data-value="B" onclick="selectOption(this)">
+        <button class="option-btn" data-group="q3" data-value="B" onclick="selectOption(this)">
           <span class="option-marker"></span>
           <span>
-            <span class="option-name">Brillo exclusivamente en la zona T</span>
-            <span class="option-detail">Frente, nariz y mentón brillantes; mejillas normales o secas</span>
+            <span class="option-name">Con oleosidad o sensación pesada generalizada</span>
+            <span class="option-detail">Exceso de sebo en todo el rostro</span>
           </span>
         </button>
-        <button class="option-btn" data-group="q1" data-value="C" onclick="selectOption(this)">
+        <button class="option-btn" data-group="q3" data-value="C" onclick="selectOption(this)">
           <span class="option-marker"></span>
           <span>
-            <span class="option-name">Oleosidad o brillo generalizado</span>
-            <span class="option-detail">Exceso de sebo en todo el rostro, poros visibles</span>
+            <span class="option-name">Con brillo moderado en zona T</span>
+            <span class="option-detail">Frente, nariz y mentón con tendencia grasa; mejillas normales a secas</span>
           </span>
         </button>
-        <button class="option-btn" data-group="q1" data-value="D" onclick="selectOption(this)">
+        <button class="option-btn" data-group="q3" data-value="D" onclick="selectOption(this)">
           <span class="option-marker"></span>
           <span>
-            <span class="option-name">Equilibrada, sin tirantez ni exceso</span>
+            <span class="option-name">Equilibrada, sin tirantez ni exceso de sebo</span>
             <span class="option-detail">No genera urgencia ni incomodidad a lo largo del día</span>
           </span>
         </button>
@@ -346,143 +291,64 @@
 
     <div class="q-divider"></div>
 
-    <!-- P2 -->
     <div class="q-block">
-      <p class="q-num">Pregunta 2 — Estado de la barrera cutánea</p>
-      <p class="q-label">Al salir de la ducha o lavarte la cara, ¿cuál es tu sensación inmediata?</p>
-      <div class="options-grid">
-        <button class="option-btn" data-group="q2" data-value="A" onclick="selectOption(this)">
-          <span class="option-marker"></span>
-          <span>
-            <span class="option-name">Necesito crema urgente</span>
-            <span class="option-detail">La piel se siente extremadamente tirante, casi incómoda</span>
-          </span>
-        </button>
-        <button class="option-btn" data-group="q2" data-value="B" onclick="selectOption(this)">
-          <span class="option-marker"></span>
-          <span>
-            <span class="option-name">Noto enrojecimiento o irritación</span>
-            <span class="option-detail">Sensibilidad ante el agua, la temperatura o los productos</span>
-          </span>
-        </button>
-        <button class="option-btn" data-group="q2" data-value="C" onclick="selectOption(this)">
-          <span class="option-marker"></span>
-          <span>
-            <span class="option-name">Limpia y normal, sin urgencia</span>
-            <span class="option-detail">No me genera apuro aplicar productos</span>
-          </span>
-        </button>
-        <button class="option-btn" data-group="q2" data-value="D" onclick="selectOption(this)">
-          <span class="option-marker"></span>
-          <span>
-            <span class="option-name">En minutos ya genera oleosidad</span>
-            <span class="option-detail">La piel "rebota" y vuelve a brillar rápidamente</span>
-          </span>
-        </button>
-      </div>
-    </div>
-
-    <div class="q-divider"></div>
-
-    <!-- P3 -->
-    <div class="q-block">
-      <p class="q-num">Pregunta 3 — Objetivo biológico</p>
-      <p class="q-label">Si tuvieras que elegir una prioridad absoluta para tu piel hoy, ¿cuál sería?</p>
-      <div class="options-grid">
-        <button class="option-btn" data-group="q3" data-value="A" onclick="selectOption(this)">
-          <span class="option-marker"></span>
-          <span>
-            <span class="option-name">Reparar, calmar y nutrir en profundidad</span>
-            <span class="option-detail">Evitar la sequedad, recuperar el confort y la luminosidad perdida</span>
-          </span>
-        </button>
-        <button class="option-btn" data-group="q3" data-value="B" onclick="selectOption(this)">
-          <span class="option-marker"></span>
-          <span>
-            <span class="option-name">Hidratar sin pesadez y controlar el brillo</span>
-            <span class="option-detail">Humedad real sin sensación grasa durante todo el día</span>
-          </span>
-        </button>
-        <button class="option-btn" data-group="q3" data-value="C" onclick="selectOption(this)">
-          <span class="option-marker"></span>
-          <span>
-            <span class="option-name">Prevenir el envejecimiento y recuperar firmeza</span>
-            <span class="option-detail">Devolverle elasticidad al rostro con activos de nueva generación</span>
-          </span>
-        </button>
-        <button class="option-btn" data-group="q3" data-value="D" onclick="selectOption(this)">
-          <span class="option-marker"></span>
-          <span>
-            <span class="option-name">Simplificar. Pocos pasos, resultados reales</span>
-            <span class="option-detail">Una rutina mínima y efectiva que pueda sostener en el tiempo</span>
-          </span>
-        </button>
-      </div>
-    </div>
-
-    <div class="mt-28">
-      <button class="btn-primary" id="btn-next-2" disabled onclick="goToScreen(3)">
-        Continuar
-      </button>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════
-       SCREEN 3: PREGUNTAS 4–6
-  ══════════════════════════════════════ -->
-  <section class="screen" id="screen-3">
-    <p class="eyebrow">Parte 2 de 2 — Tus preferencias</p>
-    <h2 class="screen-title">Casi <em>terminamos</em></h2>
-    <p class="screen-subtitle">Tres preguntas más para afinar tu recomendación.</p>
-
-    <!-- P4 -->
-    <div class="q-block">
-      <p class="q-num">Pregunta 4 — Acabado y textura</p>
-      <p class="q-label">En cuanto al acabado que dejás los productos en tu rostro, ¿qué preferís?</p>
+      <span class="q-num">Pregunta 4</span>
+      <p class="q-label">¿Solés tener brotes de granitos?</p>
       <div class="options-grid">
         <button class="option-btn" data-group="q4" data-value="A" onclick="selectOption(this)">
           <span class="option-marker"></span>
           <span>
-            <span class="option-name">Acabado luminoso — efecto glow natural</span>
-            <span class="option-detail">Con sensación de emoliencia profunda y piel confortable</span>
+            <span class="option-name">Sí, de forma frecuente</span>
+            <span class="option-detail">Tengo tendencia acneica</span>
           </span>
         </button>
         <button class="option-btn" data-group="q4" data-value="B" onclick="selectOption(this)">
           <span class="option-marker"></span>
           <span>
-            <span class="option-name">Acabado mate — textura ultraligera</span>
-            <span class="option-detail">Que se absorba en segundos y no se sienta al tacto</span>
+            <span class="option-name">Solo de manera ocasional</span>
+            <span class="option-detail">Por factores hormonales, estrés, etc.</span>
           </span>
+        </button>
+        <button class="option-btn" data-group="q4" data-value="C" onclick="selectOption(this)">
+          <span class="option-marker"></span><span><span class="option-name">Casi nunca</span></span>
         </button>
       </div>
     </div>
 
-    <div class="q-divider"></div>
+    <div class="mt-28">
+      <button class="btn-primary" id="btn-next-2" disabled onclick="goToScreen(3)">Continuar</button>
+    </div>
+  </section>
 
-    <!-- P5 -->
+  <!-- ══ SCREEN 3: PREGUNTAS 5–8 ══ -->
+  <section class="screen" id="screen-3">
+    <p class="eyebrow">Parte 2 de 2 — Tus objetivos</p>
+    <h2 class="screen-title">Casi <em>terminamos</em></h2>
+    <p class="screen-subtitle">Cuatro preguntas más para afinar tu recomendación.</p>
+
     <div class="q-block">
-      <p class="q-num">Pregunta 5 — Nivel de compromiso</p>
-      <p class="q-label">Seamos realistas con tu tiempo: ¿cómo describirías tu rutina actual?</p>
+      <span class="q-num">Pregunta 5</span>
+      <p class="q-label">¿Notás arrugas en tu rostro?</p>
       <div class="options-grid">
         <button class="option-btn" data-group="q5" data-value="A" onclick="selectOption(this)">
           <span class="option-marker"></span>
           <span>
-            <span class="option-name">Compro productos sueltos pero los abandono</span>
-            <span class="option-detail">No sé en qué orden van. Necesito la rutina armada y explicada</span>
+            <span class="option-name">Sí, líneas marcadas o pérdida de firmeza</span>
+            <span class="option-detail">Es algo que me preocupa y quiero tratar</span>
           </span>
         </button>
         <button class="option-btn" data-group="q5" data-value="B" onclick="selectOption(this)">
           <span class="option-marker"></span>
           <span>
-            <span class="option-name">Soy constante pero quiero mejor química</span>
-            <span class="option-detail">Tengo rutina pero siento que los productos no están a la altura</span>
+            <span class="option-name">Noto algunas líneas finas, principalmente alrededor de la mirada</span>
+            <span class="option-detail">El contorno de ojos es una zona que quiero cuidar</span>
           </span>
         </button>
         <button class="option-btn" data-group="q5" data-value="C" onclick="selectOption(this)">
           <span class="option-marker"></span>
           <span>
-            <span class="option-name">Solo busco algo básico o reemplazar un paso</span>
-            <span class="option-detail">No quiero una rutina extensa, solo lo esencial</span>
+            <span class="option-name">No, mi objetivo es puramente preventivo</span>
+            <span class="option-detail">Quiero cuidar mi piel antes de que aparezcan señales</span>
           </span>
         </button>
       </div>
@@ -490,82 +356,149 @@
 
     <div class="q-divider"></div>
 
-    <!-- P6 -->
     <div class="q-block">
-      <p class="q-num">Pregunta 6 — Cuidado de la mirada</p>
-      <p class="q-label">¿Notás líneas de expresión, falta de hidratación o cansancio en el contorno de ojos y querés tratarlo?</p>
+      <span class="q-num">Pregunta 6</span>
+      <p class="q-label">Después de lavarte la cara, ¿cómo la sentís?</p>
       <div class="options-grid">
         <button class="option-btn" data-group="q6" data-value="A" onclick="selectOption(this)">
           <span class="option-marker"></span>
           <span>
-            <span class="option-name">Sí, es una de mis prioridades</span>
-            <span class="option-detail">Quiero prevenir o tratar el envejecimiento en esa zona</span>
+            <span class="option-name">Extremadamente tirante</span>
+            <span class="option-detail">Necesito aplicar hidratación de inmediato</span>
           </span>
         </button>
         <button class="option-btn" data-group="q6" data-value="B" onclick="selectOption(this)">
           <span class="option-marker"></span>
           <span>
-            <span class="option-name">No, prefiero enfocarme en el resto del rostro</span>
-            <span class="option-detail">Por el momento no es una prioridad</span>
+            <span class="option-name">Cómoda al principio, pero después aparece brillo u oleosidad</span>
+            <span class="option-detail">A las pocas horas noto pesadez o exceso de sebo</span>
+          </span>
+        </button>
+        <button class="option-btn" data-group="q6" data-value="C" onclick="selectOption(this)">
+          <span class="option-marker"></span>
+          <span>
+            <span class="option-name">Limpia y estable, sin molestias significativas</span>
+            <span class="option-detail">No siento urgencia por aplicar productos</span>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <div class="q-divider"></div>
+
+    <div class="q-block">
+      <span class="q-num">Pregunta 7</span>
+      <p class="q-label">¿Qué aspecto de tu piel querés mejorar principalmente?</p>
+      <div class="options-grid">
+        <button class="option-btn" data-group="q7" data-value="A" onclick="selectOption(this)">
+          <span class="option-marker"></span>
+          <span>
+            <span class="option-name">Controlar el brillo sin que quede tirante</span>
+            <span class="option-detail">Equilibrar la producción de sebo con una textura ligera</span>
+          </span>
+        </button>
+        <button class="option-btn" data-group="q7" data-value="B" onclick="selectOption(this)">
+          <span class="option-marker"></span>
+          <span>
+            <span class="option-name">Reparar el daño, calmar rojeces y recuperar luminosidad</span>
+            <span class="option-detail">Devolver vitalidad a una piel apagada o reactiva</span>
+          </span>
+        </button>
+        <button class="option-btn" data-group="q7" data-value="C" onclick="selectOption(this)">
+          <span class="option-marker"></span>
+          <span>
+            <span class="option-name">Suavizar líneas de expresión, mejorar firmeza y tratar las ojeras</span>
+            <span class="option-detail">Tratamiento específico de la zona del contorno de ojos</span>
+          </span>
+        </button>
+        <button class="option-btn" data-group="q7" data-value="D" onclick="selectOption(this)">
+          <span class="option-marker"></span>
+          <span>
+            <span class="option-name">Simplificar mi rutina con pocos pasos prácticos</span>
+            <span class="option-detail">Menos productos, mayor constancia y mejores resultados</span>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <div class="q-divider"></div>
+
+    <div class="q-block">
+      <span class="q-num">Pregunta 8</span>
+      <p class="q-label">Seamos realistas con tu tiempo: ¿cómo describirías tu rutina actual?</p>
+      <div class="options-grid">
+        <button class="option-btn" data-group="q8" data-value="A" onclick="selectOption(this)">
+          <span class="option-marker"></span>
+          <span>
+            <span class="option-name">Básica: uno o dos pasos como máximo</span>
+            <span class="option-detail">No suelo tener tiempo para rutinas largas</span>
+          </span>
+        </button>
+        <button class="option-btn" data-group="q8" data-value="B" onclick="selectOption(this)">
+          <span class="option-marker"></span>
+          <span>
+            <span class="option-name">Intermedia: tres pasos, prefiero lo práctico</span>
+            <span class="option-detail">Procuro ser constante pero sin complicarme</span>
+          </span>
+        </button>
+        <button class="option-btn" data-group="q8" data-value="C" onclick="selectOption(this)">
+          <span class="option-marker"></span>
+          <span>
+            <span class="option-name">Completa: cuatro o más pasos con activos específicos</span>
+            <span class="option-detail">Disfruto mi momento de cuidado facial</span>
+          </span>
+        </button>
+        <button class="option-btn" data-group="q8" data-value="D" onclick="selectOption(this)">
+          <span class="option-marker"></span>
+          <span>
+            <span class="option-name">Compro productos sueltos pero me cuesta ser constante</span>
+            <span class="option-detail">No sé bien en qué orden usarlos o cuáles combinar</span>
           </span>
         </button>
       </div>
     </div>
 
     <div class="mt-28">
-      <button class="btn-primary" id="btn-diagnose" disabled onclick="showResults()">
-        Ver mi recomendación
-      </button>
+      <button class="btn-primary" id="btn-diagnose" disabled onclick="showResults()">Ver mi recomendación</button>
       <button class="btn-secondary" onclick="goToScreen(2)">Volver</button>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════
-       SCREEN 4: RESULTADOS (JS)
-  ══════════════════════════════════════ -->
+  <!-- ══ SCREEN 4: RESULTADOS ══ -->
   <section class="screen" id="screen-4"></section>
 
-  <!-- ══════════════════════════════════════
-       SCREEN 5: INSTRUCCIONES LOCAL
-  ══════════════════════════════════════ -->
+  <!-- ══ SCREEN 5: INSTRUCCIONES LOCAL ══ -->
   <section class="screen" id="screen-5">
     <p class="eyebrow">Paso final — Cómo llevar tu kit hoy</p>
     <h2 class="screen-title">Tu descuento <em>está listo.</em></h2>
     <p class="screen-subtitle">Aplicá el código de tu local y retirá el pedido sin costo de envío. Son tres pasos simples.</p>
-
     <div class="instruction-card">
       <div class="instruction-step">
         <div class="step-num">1</div>
-        <div class="step-text">
+        <div>
           <p class="step-title">Agregá tu kit al carrito</p>
           <p class="step-desc">Usá el botón "Agregar kit al carrito" de la pantalla anterior, o buscá el producto directamente en la tienda. Una vez que tengas todo, procedé al checkout.</p>
         </div>
       </div>
       <div class="instruction-step">
         <div class="step-num">2</div>
-        <div class="step-text">
+        <div>
           <p class="step-title">Aplicá tu cupón de descuento</p>
-          <p class="step-desc">
-            En el carrito, buscá el campo "Tengo un código de descuento" e ingresá:<br /><br />
-            <span class="coupon-highlight">PELUQUERIA5</span><br /><br />
-            El descuento se aplica automáticamente sobre el total.
-          </p>
+          <p class="step-desc">En el carrito, buscá el campo "Tengo un código de descuento" e ingresá:<br /><br /><span class="coupon-highlight">PELUQUERIA5</span><br /><br />El descuento se aplica automáticamente sobre el total.</p>
         </div>
       </div>
       <div class="instruction-step">
         <div class="step-num">3</div>
-        <div class="step-text">
+        <div>
           <p class="step-title">Seleccioná Retiro por local</p>
           <p class="step-desc">En el paso de envío, elegí la opción <strong>"Retiro en el local"</strong>. El costo de envío será $0 y podés retirarlo hoy mismo.</p>
         </div>
       </div>
     </div>
-
     <div class="info-note">
       <span style="flex-shrink:0; margin-top:1px;">—</span>
       <p class="info-note-text">El personal del local ya conoce el sistema. Podés mostrar la pantalla de confirmación de tu pedido para retirar sin esperas.</p>
     </div>
-
     <a href="https://www.ameesencial.com.ar/productos/" class="btn-primary">Ir a la tienda AME Esencial</a>
     <button class="restart-btn" onclick="restartQuiz()">Volver a hacer el diagnóstico</button>
   </section>
@@ -574,147 +507,156 @@
     <p>AME Esencial · Dermocosmética · Aprobado ANMAT</p>
   </footer>
 
-</div><!-- /.quiz-wrapper -->
+</div>
 
 <script>
-  // ── MODO LOCAL ──
   const IS_LOCAL = new URLSearchParams(window.location.search).get('local') === 'true';
   if (!IS_LOCAL) document.getElementById('screen-5').style.display = 'none';
 
-  // ── STATE ──
-  const ans = { q1: null, q2: null, q3: null, q4: null, q5: null, q6: null };
-
-  // ── STORE BASE ──
+  const ans = { q1:null, q2:null, q3:null, q4:null, q5:null, q6:null, q7:null, q8:null };
   const S = 'https://www.ameesencial.com.ar';
 
-  // ── CATÁLOGO DE RECOMENDACIONES ──
-  const RECS = {
-
-    'kit-xl-seca': {
-      type: 'kit',
-      name: 'Kit XL Piel Normal a Seca',
-      tagline: 'Limpieza, hidratación en capas y soporte de barrera.',
-      why: 'Tu barrera cutánea necesita una estrategia integral para recuperar la retención de agua y la luminosidad. Este kit completo te asegura limpieza gentil, tratamiento con ácido hialurónico de doble peso molecular y emoliencia profunda con ceramidas en todos los pasos de tu día.',
-      products: ['Gel de Limpieza Facial 150ml', 'Bruma Facial Hidratante 150ml', 'Sérum Ácido Hialurónico 30ml', 'Crema Facial Multivitamínica 50g'],
-      kitUrl: S + '/productos/kit-basico-xl-normal-seca/',
-      individuals: [
-        { name: 'Sérum Ácido Hialurónico', sub: '30ml · Hidratación multicapa', url: S + '/productos/serum-acido-hialuronico-doble-peso-molecular-hidratacion-multicapa-vptpw/' },
-        { name: 'Crema Facial Hidratante Multivitamínica', sub: '50g · Ceramidas + vitaminas', url: S + '/productos/crema-facial-hidratante-multivitaminica/' },
-        { name: 'Bruma Hidratante y Calmante', sub: '150ml · Agua de rosas', url: S + '/productos/bruma-hidratante-y-calmante-150-ml/' },
-      ]
+  // ── CATÁLOGO DE PRODUCTOS INDIVIDUALES ──
+  const PRODUCTS = {
+    gel: {
+      name: 'Gel de Limpieza Facial',
+      sub: '150ml · pH balanceado',
+      url: S + '/productos/gel-calmante-de-limpieza-facial-150-ml/',
+      desc: 'Suele ser el paso inicial para una rutina equilibrada. Su fórmula busca retirar impurezas diarias procurando respetar el pH natural del manto lipídico, evitando la sensación de tirantez y preparando la piel para los pasos siguientes.'
     },
-
-    'combo-seca-contorno': {
-      type: 'combo',
-      name: 'Tu combinación ideal',
-      tagline: 'Reparación + luminosidad + cuidado de la mirada.',
-      why: 'Diseñamos esta combinación exacta para tu biología. La Crema Multivitamínica y la Bruma reparan el daño y devuelven la luz, mientras que el Contorno de Ojos con Eyeseryl trata de forma específica la piel más fina y exigente de tu rostro.',
-      comboProducts: [
-        { name: 'Crema Facial Hidratante Multivitamínica', sub: '50g · Ceramidas + vitaminas E, B3, B5', url: S + '/productos/crema-facial-hidratante-multivitaminica/' },
-        { name: 'Bruma Hidratante y Calmante', sub: '150ml · Centella asiática', url: S + '/productos/bruma-hidratante-y-calmante-150-ml/' },
-        { name: 'Contorno de Ojos con Eyeseryl', sub: 'Activo antifatiga clínico', url: S + '/productos/contorno-de-ojos-con-eyeseryl/' },
-      ]
+    bruma: {
+      name: 'Bruma Facial Hidratante y Calmante',
+      sub: '150ml · Centella asiática',
+      url: S + '/productos/bruma-hidratante-y-calmante-150-ml/',
+      desc: 'Orientada a calmar y tonificar. Suele ser de gran ayuda para pieles que presentan sensibilidad o rojeces, buscando un efecto refrescante previo a los tratamientos o como paso de hidratación intermedia.'
     },
-
-    'duo-hidratante': {
-      type: 'kit',
-      name: 'Dúo Hidratante — Piel Normal a Seca',
-      tagline: 'Dos pasos. Máxima eficacia.',
-      why: 'El Sérum redensifica desde adentro y la Crema Multivitamínica sella la humedad reparando la barrera cutánea. El equilibrio perfecto para pieles normales a secas que buscan resultados sin rutinas extensas.',
-      products: ['Sérum Ácido Hialurónico 30ml', 'Crema Facial Hidratante Multivitamínica 50g'],
-      kitUrl: S + '/productos/duo-hidratante1/',
-      individuals: [
-        { name: 'Sérum Ácido Hialurónico', sub: '30ml · Hidratación multicapa', url: S + '/productos/serum-acido-hialuronico-doble-peso-molecular-hidratacion-multicapa-vptpw/' },
-        { name: 'Crema Facial Hidratante Multivitamínica', sub: '50g · Ceramidas + vitaminas', url: S + '/productos/crema-facial-hidratante-multivitaminica/' },
-      ]
+    serum: {
+      name: 'Sérum Ácido Hialurónico con Niacinamida',
+      sub: '30ml · Hidratación multicapa',
+      url: S + '/productos/serum-acido-hialuronico-doble-peso-molecular-hidratacion-multicapa-vptpw/',
+      desc: 'Un tratamiento dual formulado para favorecer la retención de agua en las capas profundas. Al mismo tiempo, la Niacinamida busca asistir en la regulación progresiva del sebo y la unificación del tono.'
     },
+    cremaGel: {
+      name: 'Crema Gel Hidratante',
+      sub: '50g · Textura ultraligera, acabado mate',
+      url: S + '/productos/crema-gel-hidratante/',
+      desc: 'Sugerida para sellar la hidratación sin aportar pesadez. Su textura ultraligera busca mantener el equilibrio de agua promoviendo un acabado mate y una absorción rápida, sin obstruir los poros.'
+    },
+    cremaMulti: {
+      name: 'Crema Facial Hidratante Multivitamínica',
+      sub: '50g · Proceramidas + vitaminas E, B3, B5',
+      url: S + '/productos/crema-facial-hidratante-multivitaminica/',
+      desc: 'Desarrollada para pieles que podrían requerir mayor emoliencia. Su combinación de Proceramidas busca favorecer la reparación de la barrera cutánea y promover un aspecto luminoso progresivo.'
+    },
+    retinol: {
+      name: 'Sérum Retinol',
+      sub: '30ml · Uso exclusivamente nocturno',
+      url: S + '/productos/serum-retinol/',
+      desc: 'Pensado para acompañar el ciclo natural de renovación celular, asistiendo progresivamente en la mejora de la firmeza y en la suavización de las líneas de expresión durante el descanso. Se sugiere adaptación progresiva en pieles reactivas.'
+    },
+    contorno: {
+      name: 'Contorno de Ojos con Eyeseryl',
+      sub: 'Activo antifatiga clínico',
+      url: S + '/productos/contorno-de-ojos-con-eyeseryl/',
+      desc: 'Dado que la zona periocular es más fina y carece de glándulas sebáceas, este producto busca tratar de manera focalizada la hidratación, intentando prevenir signos de fatiga y pérdida de elasticidad en esa zona específica.'
+    }
+  };
 
+  // ── CATÁLOGO DE KITS ──
+  const KITS = {
+    'duo-hydra': {
+      name: 'Dúo Hydra Balance',
+      tagline: 'Hidratación profunda con textura ultraligera.',
+      url: S + '/productos/duo-hydra-balance-piel-normal-a-grasa-sun83/',
+      includes: ['Sérum Ácido Hialurónico con Niacinamida', 'Crema Gel Hidratante'],
+      products: ['serum', 'cremaGel']
+    },
+    'kit-normal-mixta': {
+      name: 'Kit Piel Normal / Mixta',
+      tagline: 'Tres pasos para limpiar, hidratar y equilibrar.',
+      url: S + '/productos/kit-piel-normal-mixta/',
+      includes: ['Gel de Limpieza Facial', 'Sérum Ácido Hialurónico', 'Crema Gel Hidratante'],
+      products: ['gel', 'serum', 'cremaGel']
+    },
     'kit-mixta-grasa': {
-      type: 'kit',
       name: 'Kit Piel Mixta / Grasa',
       tagline: 'Equilibrio sebáceo sin resecar ni brillar.',
-      why: 'Tu piel no necesita más astringentes, necesita química que equilibre la producción de sebo aportando agua. Esta rutina completa limpia sin resecar, hidrata con ácido hialurónico sin residuo y sella con una crema gel de absorción inmediata — acabado 100% mate.',
-      products: ['Gel de Limpieza Facial 150ml', 'Bruma Facial Hidratante 60ml', 'Sérum Ácido Hialurónico 30ml', 'Crema Gel Hidratante 50g'],
-      kitUrl: S + '/productos/kit-piel-mixta-grasa/',
-      individuals: [
-        { name: 'Crema Gel Hidratante', sub: '50g · Textura ultraligera, absorción inmediata', url: S + '/productos/crema-gel-hidratante/' },
-        { name: 'Sérum Ácido Hialurónico', sub: '30ml · Sin residuo graso', url: S + '/productos/serum-acido-hialuronico-doble-peso-molecular-hidratacion-multicapa-vptpw/' },
-        { name: 'Gel de Limpieza Facial', sub: '150ml · pH balanceado', url: S + '/productos/gel-calmante-de-limpieza-facial-150-ml/' },
-      ]
+      url: S + '/productos/kit-piel-mixta-grasa/',
+      includes: ['Gel de Limpieza Facial', 'Bruma Facial', 'Sérum Ácido Hialurónico', 'Crema Gel Hidratante'],
+      products: ['gel', 'bruma', 'serum', 'cremaGel']
     },
-
+    'duo-hidratante': {
+      name: 'Dúo Hidratante — Piel Normal a Seca',
+      tagline: 'Dos pasos para reparar la barrera y recuperar luminosidad.',
+      url: S + '/productos/duo-hidratante1/',
+      includes: ['Sérum Ácido Hialurónico con Niacinamida', 'Crema Facial Multivitamínica'],
+      products: ['serum', 'cremaMulti']
+    },
+    'kit-xl-seca': {
+      name: 'Kit XL Piel Normal a Seca',
+      tagline: 'Acompañamiento completo para restaurar la barrera cutánea.',
+      url: S + '/productos/kit-basico-xl-normal-seca/',
+      includes: ['Gel de Limpieza Facial', 'Bruma Facial', 'Sérum Ácido Hialurónico', 'Crema Facial Multivitamínica'],
+      products: ['gel', 'bruma', 'serum', 'cremaMulti']
+    },
+    'kit-24hs': {
+      name: 'Kit Rutina 24hs: Hidratación y Renovación',
+      tagline: 'Hidratación de día. Renovación de noche.',
+      url: S + '/productos/rutina-dia-y-noche/',
+      includes: ['Gel de Limpieza Facial', 'Sérum Ácido Hialurónico', 'Crema Facial Multivitamínica', 'Sérum Retinol (uso nocturno)'],
+      products: ['gel', 'serum', 'cremaMulti', 'retinol']
+    },
     'kit-dinamico': {
-      type: 'kit',
       name: 'Kit Rutina Dinámica',
-      tagline: 'Control del sebo, prevención y cuidado de la mirada.',
-      why: 'La rutina definitiva para controlar la oleosidad, prevenir el envejecimiento y cuidar tu mirada. Limpieza inteligente, tratamiento específico para el contorno, niacinamida para unificar el tono y nuestra Crema Gel de absorción inmediata.',
-      products: ['Gel de Limpieza Facial', 'Sérum Ácido Hialurónico', 'Crema Gel Hidratante', 'Contorno de Ojos con Eyeseryl'],
-      kitUrl: S + '/productos/kit-rutina-dinamica-1mfdo/',
-      individuals: [
-        { name: 'Crema Gel Hidratante', sub: '50g · Textura ultraligera', url: S + '/productos/crema-gel-hidratante/' },
-        { name: 'Contorno de Ojos con Eyeseryl', sub: 'Activo antifatiga clínico', url: S + '/productos/contorno-de-ojos-con-eyeseryl/' },
-        { name: 'Sérum Ácido Hialurónico', sub: '30ml · Sin residuo graso', url: S + '/productos/serum-acido-hialuronico-doble-peso-molecular-hidratacion-multicapa-vptpw/' },
-      ]
-    },
+      tagline: 'Control del sebo, unificación del tono y cuidado de la mirada.',
+      url: S + '/productos/kit-rutina-dinamica-1mfdo/',
+      includes: ['Gel de Limpieza Facial', 'Sérum Ácido Hialurónico', 'Crema Gel Hidratante', 'Contorno de Ojos con Eyeseryl'],
+      products: ['gel', 'serum', 'cremaGel', 'contorno']
+    }
+  };
 
-    'duo-hydra-balance': {
-      type: 'kit',
-      name: 'Dúo Hydra Balance — Piel Normal a Grasa',
-      tagline: 'El paso fundamental para controlar el brillo.',
-      why: 'Hidratación profunda con ácido hialurónico y un sellado ultraligero en textura gel que respeta tu biología sin obstruir los poros. Dos productos que cambian el equilibrio sebáceo sin generar el efecto rebote que producen los productos astringentes.',
-      products: ['Sérum Ácido Hialurónico 30ml', 'Crema Gel Hidratante 50g'],
-      kitUrl: S + '/productos/duo-hydra-balance-piel-normal-a-grasa-sun83/',
-      individuals: [
-        { name: 'Crema Gel Hidratante', sub: '50g · Textura ultraligera', url: S + '/productos/crema-gel-hidratante/' },
-        { name: 'Sérum Ácido Hialurónico', sub: '30ml · Sin residuo graso', url: S + '/productos/serum-acido-hialuronico-doble-peso-molecular-hidratacion-multicapa-vptpw/' },
-      ]
-    },
-
-    'kit-normal-mixta': {
-      type: 'kit',
-      name: 'Kit Piel Normal / Mixta',
-      tagline: 'Mantenimiento clínico para piel equilibrada.',
-      why: 'Tu piel está en equilibrio y el objetivo es mantenerla así. Tres pasos exactos de mantenimiento clínico — gel que respeta el pH, ácido hialurónico para la retención de agua y crema gel para sellar sin sensación pesada. Sin exceso, sin carencias.',
-      products: ['Gel de Limpieza Facial', 'Sérum Ácido Hialurónico', 'Crema Gel Hidratante'],
-      kitUrl: S + '/productos/kit-piel-normal-mixta/',
-      individuals: [
-        { name: 'Crema Gel Hidratante', sub: '50g · Textura ultraligera', url: S + '/productos/crema-gel-hidratante/' },
-        { name: 'Sérum Ácido Hialurónico', sub: '30ml · Hidratación multicapa', url: S + '/productos/serum-acido-hialuronico-doble-peso-molecular-hidratacion-multicapa-vptpw/' },
-        { name: 'Bruma Hidratante y Calmante', sub: '60ml · Formato cartera', url: S + '/productos/bruma-hidratante-y-calmante-60-ml/' },
-      ]
-    },
-
+  // ── JUSTIFICACIONES POR PERFIL ──
+  const JUSTIFICATIONS = {
+    'perfil1-duo': 'Cuando la piel produce exceso de sebo, muchas veces busca compensar la falta de agua. Este dúo podría ayudar a reponer la hidratación profunda y sellar la humedad con una textura ligera, procurando respetar la barrera sin obstruir los poros.',
+    'perfil1-inter': 'Tres pasos pensados para limpiar procurando respetar el pH, hidratar y sellar con un acabado de textura ligera y mate.',
+    'perfil1-full': 'Una rutina integral suele ser una gran alternativa para buscar el equilibrio en la producción de sebo de manera sostenida, procurando mantener los niveles de agua durante todo el día sin aportar pesadez.',
+    'perfil2-duo': 'La barrera cutánea tirante suele beneficiarse de emoliencia inmediata. El Sérum busca redensificar y la Crema Multivitamínica está formulada para ayudar a reparar el daño, promoviendo una luminosidad natural.',
+    'perfil2-full': 'La opacidad y sequedad continuas suelen requerir un cuidado constante. Este kit ofrece un acompañamiento de limpieza suave y nutrición con Proceramidas que buscan favorecer la recuperación progresiva de la barrera cutánea.',
+    'perfil3': 'Con el paso del tiempo, la piel suele requerir estímulos adicionales. Este protocolo busca acompañar el ciclo de 28 días, sumando hidratación de día y el proceso de renovación del Retinol por la noche. Se sugiere adaptación progresiva en pieles reactivas.',
+    'perfil4': 'Una opción que consideramos muy completa para intentar unificar el tono con Niacinamida, controlar el brillo y brindar una atención específica a la zona ocular.'
   };
 
   // ── ÁRBOL DE DECISIÓN ──
-  function getRecommendation() {
-    const q1 = ans.q1, q2 = ans.q2, q5 = ans.q5, q6 = ans.q6;
-    const fullRoutine = (q5 === 'A' || q5 === 'B');
-    const wantsEye   = (q6 === 'A');
+  function determineRec() {
+    const { q1, q3, q5, q6, q7, q8 } = ans;
+    const isMixGrasa = (q3 === 'B' || q3 === 'C') || q6 === 'B' || q7 === 'A';
+    const isSeca     = (q3 === 'A' || q3 === 'D') || q6 === 'A' || q7 === 'B';
+    const isAntiAge  = (q1 === 'C' || q1 === 'D') && q5 === 'A';
+    const isEye      = (q5 === 'B' || q7 === 'C') && isMixGrasa && q8 === 'C';
 
-    // PERFIL 3: Piel normal/mixta equilibrada
-    if (q1 === 'D' && q2 === 'C') return 'kit-normal-mixta';
-
-    // PERFIL 1: Piel seca o normal con tendencia seca
-    if (q1 === 'A' || q2 === 'A' || q2 === 'B') {
-      if (fullRoutine && wantsEye)  return 'combo-seca-contorno';
-      if (fullRoutine)              return 'kit-xl-seca';
-      return 'duo-hidratante';
+    if (isAntiAge) {
+      return { kit: 'kit-24hs', just: 'perfil3' };
     }
-
-    // PERFIL 2: Piel mixta a grasa
-    if (q1 === 'B' || q1 === 'C' || q2 === 'D') {
-      if (fullRoutine && wantsEye)  return 'kit-dinamico';
-      if (fullRoutine)              return 'kit-mixta-grasa';
-      return 'duo-hydra-balance';
+    if (isEye) {
+      return { kit: 'kit-dinamico', just: 'perfil4' };
     }
-
-    // Default: equilibrada sin señales claras
-    return 'kit-normal-mixta';
+    if (isMixGrasa) {
+      if (q8 === 'A')              return { kit: 'duo-hydra',      just: 'perfil1-duo' };
+      if (q8 === 'B' || q8 === 'D') return { kit: 'kit-normal-mixta', just: 'perfil1-inter' };
+      return                              { kit: 'kit-mixta-grasa',  just: 'perfil1-full' };
+    }
+    if (isSeca) {
+      if (q8 === 'A') return { kit: 'duo-hidratante', just: 'perfil2-duo' };
+      return                 { kit: 'kit-xl-seca',    just: 'perfil2-full' };
+    }
+    // Default equilibrada
+    return q8 === 'A'
+      ? { kit: 'duo-hidratante',  just: 'perfil2-duo' }
+      : { kit: 'kit-normal-mixta', just: 'perfil1-inter' };
   }
 
   // ── NAVEGACIÓN ──
-  const PROG = { 1: 0, 2: 20, 3: 55, 4: 80, 5: 100 };
+  const PROG = { 1:0, 2:20, 3:55, 4:85, 5:100 };
   function goToScreen(n) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById('screen-' + n).classList.add('active');
@@ -722,7 +664,7 @@
     window.scrollTo(0, 0);
   }
 
-  // ── SELECCIÓN DE OPCIÓN ──
+  // ── SELECCIÓN ──
   function selectOption(btn) {
     const g = btn.dataset.group;
     document.querySelectorAll('.option-btn[data-group="' + g + '"]').forEach(b => b.classList.remove('selected'));
@@ -732,86 +674,65 @@
   }
 
   function checkButtons() {
-    const s2done = ans.q1 && ans.q2 && ans.q3;
-    const s3done = ans.q4 && ans.q5 && ans.q6;
+    const s2 = ans.q1 && ans.q2 && ans.q3 && ans.q4;
+    const s3 = ans.q5 && ans.q6 && ans.q7 && ans.q8;
     const b2 = document.getElementById('btn-next-2');
     const b3 = document.getElementById('btn-diagnose');
-    if (b2) b2.disabled = !s2done;
-    if (b3) b3.disabled = !s3done;
+    if (b2) b2.disabled = !s2;
+    if (b3) b3.disabled = !s3;
   }
 
   // ── CONSTRUIR RESULTADOS ──
   function showResults() {
-    const key = getRecommendation();
-    const rec = RECS[key];
+    const rec = determineRec();
+    const kit = KITS[rec.kit];
+    const just = JUSTIFICATIONS[rec.just];
+
     const ctaBtn = IS_LOCAL
       ? `<button class="btn-primary" onclick="goToScreen(5)">Cómo usar mi descuento</button>`
       : `<a href="${S}/productos/" class="btn-primary">Ir a la tienda AME Esencial</a>`;
 
-    let mainCard = '';
-
-    if (rec.type === 'combo') {
-      // Combo de productos individuales (sin kit empaquetado)
-      mainCard = `
-        <div class="kit-card">
-          <div class="kit-card-header">
-            <span class="kit-label">Combinación recomendada — AME Esencial</span>
-            <span class="kit-name">${rec.name}</span>
-            <span class="kit-tagline">${rec.tagline}</span>
-          </div>
-          <div class="kit-card-body">
-            <p class="kit-why-title">Por qué esta combinación</p>
-            <p class="kit-why-text">${rec.why}</p>
-            <div class="combo-products">
-              ${rec.comboProducts.map(p => `
-                <div class="combo-product-row">
-                  <div>
-                    <span class="product-mini-name">${p.name}</span>
-                    <span class="product-mini-sub">${p.sub}</span>
-                  </div>
-                  <a href="${p.url}" class="product-mini-btn">Ver</a>
-                </div>
-              `).join('')}
+    const productsHTML = kit.products.map(pKey => {
+      const p = PRODUCTS[pKey];
+      return `
+        <div class="product-card">
+          <div class="product-card-top">
+            <div>
+              <span class="product-card-name">${p.name}</span>
+              <span class="product-card-sub">${p.sub}</span>
             </div>
+            <a href="${p.url}" class="btn-product">Ver</a>
           </div>
+          <p class="product-card-desc">${p.desc}</p>
         </div>`;
-    } else {
-      // Kit empaquetado
-      mainCard = `
-        <div class="kit-card">
-          <div class="kit-card-header">
-            <span class="kit-label">Recomendación AME Esencial</span>
-            <span class="kit-name">${rec.name}</span>
-            <span class="kit-tagline">${rec.tagline}</span>
-          </div>
-          <div class="kit-card-body">
-            <p class="kit-why-title">Por qué este kit</p>
-            <p class="kit-why-text">${rec.why}</p>
-            <div class="kit-includes">
-              <p class="kit-includes-title">El kit incluye</p>
-              ${rec.products.map(p => `<span class="kit-product-item">${p}</span>`).join('')}
-            </div>
-            <a href="${rec.kitUrl}" class="btn-kit">Agregar kit al carrito</a>
-          </div>
-        </div>
-        <div class="individuals-section">
-          <p class="individuals-title">También podés elegir por producto</p>
-          ${rec.individuals.map(p => `
-            <div class="product-mini-card">
-              <div>
-                <span class="product-mini-name">${p.name}</span>
-                <span class="product-mini-sub">${p.sub}</span>
-              </div>
-              <a href="${p.url}" class="product-mini-btn">Ver</a>
-            </div>
-          `).join('')}
-        </div>`;
-    }
+    }).join('');
 
     document.getElementById('screen-4').innerHTML = `
       <p class="eyebrow">Tu resultado</p>
       <span class="result-badge">Recomendación personalizada</span>
-      ${mainCard}
+
+      <div class="kit-card">
+        <div class="kit-card-header">
+          <span class="kit-label-tag">Recomendación AME Esencial</span>
+          <span class="kit-name">${kit.name}</span>
+          <span class="kit-tagline">${kit.tagline}</span>
+        </div>
+        <div class="kit-card-body">
+          <p class="kit-why-title">Por qué este kit</p>
+          <p class="kit-why-text">${just}</p>
+          <div class="kit-includes">
+            <p class="kit-includes-title">El kit incluye</p>
+            ${kit.includes.map(i => `<span class="kit-product-item">${i}</span>`).join('')}
+          </div>
+          <a href="${kit.url}" class="btn-kit">Agregar kit al carrito</a>
+        </div>
+      </div>
+
+      <div class="individuals-section">
+        <p class="individuals-title">Los productos que lo componen</p>
+        ${productsHTML}
+      </div>
+
       <div class="mt-28">
         ${ctaBtn}
         <button class="restart-btn" onclick="restartQuiz()">Volver a hacer el diagnóstico</button>
