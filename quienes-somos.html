@@ -61,30 +61,15 @@
     /* ── WRAPPER ── */
     .page-wrapper { max-width: 680px; margin: 0 auto; }
 
-    /* ── HERO (foto + título) ── */
+    /* ── HERO ── */
     .hero {
-      position: relative;
       background: var(--black);
-      overflow: hidden;
+      padding: 44px 28px 40px;
     }
-    .hero-img {
-      width: 100%;
-      display: block;
-      opacity: 0.88;
-      object-fit: cover;
-      max-height: 560px;
-      object-position: top center;
-    }
-    .hero-caption {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 32px 28px 28px;
-      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0) 100%);
-      color: white;
-    }
+    .hero-caption { color: white; }
     .hero-eyebrow {
       font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
-      opacity: 0.65; display: block; margin-bottom: 6px; font-family: var(--font-ui);
+      opacity: 0.65; display: block; margin-bottom: 12px; font-family: var(--font-ui);
     }
     .hero-title {
       font-family: var(--font-display); font-size: 2.6rem; font-weight: 300;
@@ -220,7 +205,6 @@
 
     <!-- ── HERO ── -->
     <div class="hero">
-      <img src="foto-founders.png" alt="Florencia y Lautaro, fundadores de AME Esencial" class="hero-img" />
       <div class="hero-caption">
         <span class="hero-eyebrow">AME Esencial · Quiénes somos</span>
         <h1 class="hero-title">Ciencia y<br /><em>convicción.</em></h1>
@@ -281,7 +265,7 @@
     <div class="cta-bar">
       <p class="cta-label">Conocé lo que hacemos</p>
       <a href="https://www.ameesencial.com.ar/productos/" class="cta-btn">Ver productos</a>
-      <a href="https://lautarosalucho-a11y.github.io/ame-quiz/" class="cta-secondary">Diagnóstico de piel gratuito</a>
+      <a href="https://ameesencial-sys.github.io/ame-quiz/" class="cta-secondary">Diagnóstico de piel gratuito</a>
     </div>
 
   </div><!-- /.page-wrapper -->
