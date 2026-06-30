@@ -182,6 +182,20 @@
     }
     .site-footer p { font-size: 0.67rem; letter-spacing: 0.08em; color: var(--light); text-transform: uppercase; }
 
+    /* Foto founders */
+    .founders-photo {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      overflow: hidden;
+    }
+    .founders-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+    }
+
     /* ── DESKTOP ── */
     @media (min-width: 700px) {
       .hero-title { font-size: 3.4rem; }
@@ -261,6 +275,11 @@
       </p>
     </div>
 
+    <!-- ── FOTO FOUNDERS ── -->
+    <div class="founders-photo">
+      <img src="Quienes%20Somos%20Color%202.JPG" alt="Florencia y Lautaro, fundadores de AME Esencial" />
+    </div>
+
     <!-- ── CTA ── -->
     <div class="cta-bar">
       <p class="cta-label">Conocé lo que hacemos</p>
@@ -271,7 +290,7 @@
   </div><!-- /.page-wrapper -->
 
   <footer class="site-footer">
-    <p>AME Esencial · Dermocosmética · Aprobado ANMAT</p>
+    <p>AME Esencial · Dermocosmética · Certificado por ANMAT</p>
   </footer>
 
 </body>
